@@ -1,0 +1,29 @@
+class Solution
+{
+public:
+	public:
+		int find_median(vector<int> v)
+		{
+		    sort(v.begin(),v.end());
+		    int n=v.size();
+		    if(n%2!=0)
+		    {
+		        int s=0;
+		        int e=n-1;
+		        int mid=(s+e)/2;
+		        float t=v[mid];
+		        return t;
+		    }
+		    else 
+		    {
+		        int s=0;
+		        int e=n-1;
+		        int mid1=s+(e-1)/2;
+		        int mid2=s+(e-1)/2 + 1;
+		        int mid=(v[mid1]+v[mid2])/2;
+		        return mid;
+		        
+		    }
+		    // Code here.
+		}
+};
