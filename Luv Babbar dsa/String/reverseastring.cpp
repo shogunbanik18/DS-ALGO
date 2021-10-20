@@ -12,6 +12,5 @@ public:
             swap(s[low++],s[high--]);
             
         }
-    }
-    
+    } 
 };
