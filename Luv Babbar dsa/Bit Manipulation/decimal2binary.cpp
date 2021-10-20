@@ -32,6 +32,7 @@ int decimal2binary(int n)
     return ans;
 }
 
+
 int main()
 {
     int n;
