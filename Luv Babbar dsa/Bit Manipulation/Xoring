@@ -1,0 +1,18 @@
+// {1,2,3,1,4,2,3}
+// ans = 4 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int xoring(vector<int> v)
+{
+    // your code goes here
+    int res=0;
+    for(auto x:v)
+    {
+        res=res^x;
+    }
+    return res;
+
+    
+}
