@@ -20,18 +20,25 @@ int main()
     return 0;
 }
 
-
 // class Solution{
 //     public:
 //     // Function to check if given number n is a power of two.
 //     bool isPowerofTwo(long long n)
 //     {
-//         if(n==0)
+//         if(n<=0)
 //         {
 //             return false;
 //         }
-//        return (!(n&(n-1)));
+//     //   return (!(n&(n-1)));
+//         if((n&(n-1))==0)
+//         {
+//             return true;
+//         }
+//         else
+//         {
+//             return false;
+//         }
 //         // Your code here    
         
 //     }
-// };
+};
