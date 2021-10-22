@@ -1,0 +1,86 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// using extra space
+// tc : O((n+m)*log(n+m))
+vector<int> merge(vector<int> arr1, vector<int> arr2, int n, int m)
+{
+    vector<int> v;
+    int i = 0, j = 0;
+    while (i < n and j < m)
+    {
+        if (arr1[i] > arr2[j])
+        {
+            v.push_back(arr2[j]);
+            j++;
+        }
+        else if (arr1[i] < arr2[j])
+        {
+            v.push_back(arr1[i]);
+            i++;
+        }
+    }
+
+    // copying the remaining elements of 1st array
+    while (i < n)
+    {
+        v.push_back(arr1[i]);
+        i++;
+    }
+
+    // copying the remaining elements of 2nd array
+    while (j < m)
+    {
+        v.push_back(arr2[j]);
+        j++;
+    }
+    // return v;
+    for (int x : v)
+    {
+        cout << x << " ";
+    }
+}
+
+int main()
+{
+    vector<int> arr1 = {1, 3, 5, 7};
+    vector<int> arr2 = {0, 2, 6, 8, 9};
+    int n = arr1.size();
+    int m = arr2.size();
+    merge(arr1, arr2, n, m);
+    return 0;
+}
+
+// without using extra space
+// Expected Time Complexity: O((n+m)*log(n+m))
+// Expected Auxiliary Space: O(1)
+
+class Solution
+{
+public:
+    void merge(int arr1[], int arr2[], int n, int m)
+    {
+        // with no extra space
+        int i = n - 1;
+        int j = 0;
+        while (i >= 0 and j < m)
+        {
+            if (arr1[i] > arr2[j])
+            {
+                // swapping
+                int temp = arr1[i];
+                arr1[i] = arr2[j];
+                arr2[j] = temp;
+                j++;
+                i--;
+            }
+            else
+            {
+                break;
+            }
+        }
+        sort(arr1, arr1 + n);
+        sort(arr2, arr2 + m);
+        // code here
+    }
+};
