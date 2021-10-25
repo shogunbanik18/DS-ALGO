@@ -18,3 +18,12 @@ int main()
   cout<<"Size of stack : "<<s.size()<<endl;
   cout<<"Empty or not : "<<s.empty()<<endl;
 }
+
+
+// output //
+ clang++-7 -pthread -std=c++17 -o main main.cpp
+ ./main
+Top Element : MS DHONI Fan
+Top Element : Banik
+Size of stack : 2
+Empty or not : 0
