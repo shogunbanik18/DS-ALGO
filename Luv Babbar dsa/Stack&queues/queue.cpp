@@ -18,3 +18,13 @@ int main() {
 
   cout<<"Size after pop : "<<q.size()<<endl;
 }
+
+
+// output 
+//  clang++-7 -pthread -std=c++17 -o main main.cpp
+//  ./main
+// Size before pop : 3
+// first element : Shogun
+// first element : Banik
+// Size after pop : 2
+//  
