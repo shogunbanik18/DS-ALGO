@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int fact(int n)
+{
+    // base case
+    if (n == 0)
+    {
+        return 1;
+    }
+
+    // recusive case
+    return n * fact(n - 1);
+}
+
+int fibonacci(int n)
+{
+    // base case
+    if (n == 0 or n == 1)
+    {
+        return n;
+    }
+
+    int f1 = fibonacci(n - 1);
+    int f2 = fibonacci(n - 2);
+    return f1 + f2;
+}
+
+// checking if the array is sorted or not using recursion
+bool issorted(int arr[], int n)
+{
+    // base case
+    if (n == 1 or n == 0)
+    {
+        return true;
+    }
+
+    // recursive case
+    if (arr[0] < arr[1] and issorted(arr + 1, n - 1))
+    {
+        return true;
+    }
+    return false;
+}
+
+// another approach
+bool issortedtwo(int arr[], int i, int n)
+{
+    if (i == n - 1)
+    {
+        return true;
+    }
+
+    if (arr[i] < arr[i + 1] and issortedtwo(arr, i + 1, n))
+    {
+        return true;
+    }
+    return false;
+}
+
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 15, 6};
+    int n = sizeof(arr) / sizeof(int);
+    // cin >> n;
+    cout << issorted(arr, n) << endl;
+    cout << issortedtwo(arr, 0, n) << endl;
+
+    // cout << "Factorial of a given number is : " << fact(n) << endl;
+    // cout << "Fibonacci series is : " << fibonacci(n) << endl;
+    return 0;
+}
