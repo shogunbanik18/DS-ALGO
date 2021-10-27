@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// for single stocks
+int maxProfit(vector<int> &arr)
+{
+    int n = arr.size();
+    int maxprofit = 0;
+    int minsofar = arr[0];
+    for (int i = 0; i < n; i++)
+    {
+        minsofar = min(minsofar, arr[i]);
+        int profit = arr[i] - minsofar;
+        maxprofit = max(maxprofit, profit);
+    }
+    return maxprofit;
+}
+
+// for multiple stocks
+int maxProfit2(vector<int> &arr)
+{
+    int n = arr.size();
+    int profit = 0;
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] > arr[i - 1])
+        {
+            profit = profit + (arr[i] - arr[i - 1]);
+        }
+    }
+    return profit;
+}
+
+int main()
+{
+    vector<int> arr = {7, 1, 5, 3, 6, 4};
+    int n = arr.size();
+    // cout <<"Buy and sell of single stocks maximum profit is : "<< maxProfit(arr) << endl;
+    cout << "Buy and sell of multiple stocks maximum profit is : " << maxProfit2(arr) << endl;
+}
