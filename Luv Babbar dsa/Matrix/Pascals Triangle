@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Approach 1
+vector<vector<int>> generate(int numRows)
+{
+    vector<vector<int>> r(numRows);
+
+    for (int i = 0; i < numRows; i++)
+    {
+        r[i].resize(i + 1);
+        r[i][0] = r[i][i] = 1;
+
+        for (int j = 1; j < i; j++)
+        {
+            r[i][j] = r[i - 1][j - 1] + r[i - 1][j];
+        }
+    }
+    return r;
+}
+
+// approach 2
+// int res = 1;
+// if (k > n - k)
+//     k = n - k;
+// for (int i = 0; i < k; ++i)
+// {
+//     res *= (n - i);
+//     res /= (i + 1);
+// }
+
+// return res;
+
+int binomial_coefficient(int n, int k)
+{
+    int res = 1;
+    if (k > n - k)
+    {
+        k = n - k;
+    }
+    for (int i = 0; i < k; i++)
+    {
+        res = res * (n - i);
+        res = res / (i + 1);
+    }
+}
+
+vector<vector<int>> printPascal(int n)
+{
+    // iterating through each line
+    vector<vector<int>> result;
+    for (int line = 0; line < n; line++)
+    {
+        vector<int> v;
+        for (int i = 0; i <= line; i++)
+        {
+            v.push_back(binomial_coefficient(line, i));
+        }
+        result.push_back(v);
+    }
+    return result;
+}
