@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// count the number of ones
+int numberofones(int n)
+{
+    int count = 0;
+    while (n != 0)
+    {
+        n = n & (n - 1);
+        count++;
+    }
+    return count;
+}
+
+// alter method
+int numberofones2(int n)
+{
+    int count = 0;
+    while (n)
+    {
+        int lastbit = n & 1;
+        count = count + lastbit;
+        n = n >> 1;
+    }
+    return count;
+}
+
+// subsets using bitwise operator
+void subsets(int arr[], int n)
+{
+    for (int i = 0; i < (1 << n); i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (i & (1 << j))
+            {
+                cout << arr[j] << " ,";
+            }
+            cout << " ";
+        }
+    }
+}
+
+int main()
+{
+    // int n;
+    // cin >> n;
+    int arr[4] = {1, 2, 3, 4};
+    subsets(arr, 4);
+    // int n = 4 & (1 << 4);
+    // cout << n;
+    // cout << numberofones2(n) << endl;
+    return 0;
+}
