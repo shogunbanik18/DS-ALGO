@@ -1,0 +1,40 @@
+class Solution {
+  public:
+    int findPosition(int N)
+    {
+        // int pos=0;
+        // int count=0;
+        // if(N==0)
+        // {
+        //     return -1;
+        // }
+        // while(N>0 and (N&1)==0)
+        // {
+        //     N=N>>1;
+        //     count++;
+        // }
+        // return N==1?count+1:-1;
+        // // code here
+        
+        
+       int position=0;
+       int res = N&N-1;
+       if(N==0)
+       {
+           return -1;
+           
+       }
+       if(res==0){
+           while(N!=0)
+           {
+               N=N>>1;
+               position++;
+           }
+           return position;
+       }
+       else
+       {
+           return -1;
+       }
+    }
+};
