@@ -1,0 +1,41 @@
+// using two pointer approach //
+
+class Solution
+{
+public:
+    // Function to find if there exists a triplet in the
+    // array A[] which sums up to X.
+    bool find3Numbers(int A[], int n, int X)
+    {
+        sort(A, A + n);
+        bool ans = 0;
+        for (int i = 0; i < n; i++)
+        {
+            int start = i + 1;
+            int end = n - 1;
+            while (start < end)
+            {
+                if (A[i] + A[start] + A[end] == X)
+                {
+                    ans = 1;
+                    break;
+                }
+                else if (A[i] + A[start] + A[end] < X)
+                {
+                    start++;
+                }
+                else
+                {
+                    end--;
+                }
+                if (ans == 1)
+                {
+                    break;
+                }
+            }
+        }
+        return ans;
+
+        // Your Code Here
+    }
+};
