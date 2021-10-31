@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    // O(1) TIME
+    unordered_set<int> s = {1, 2, 3, 5, 6, 3, 0, 4};
+    int key;
+    cin >> key;
+    if (s.find(key) != s.end())
+    {
+        cout << key << " is present" << endl;
+    }
+    else
+    {
+        cout << "Not Found" << endl;
+    }
+
+    s.erase(1);
+    s.insert(111);
+    for (auto x : s)
+    {
+        cout << x << " ";
+    }
+}
