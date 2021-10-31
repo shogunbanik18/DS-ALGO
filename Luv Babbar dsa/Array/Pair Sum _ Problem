@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// using sorting + sliding window
+// TC 0(NLOGN)
+vector<int> pairsum(vector<int> arr, int n, int k)
+{
+    vector<int> v;
+    sort(arr.begin(), arr.end());
+    int i = 0, j = n - 1;
+    while (i < j)
+    {
+        if (arr[i] == k - arr[j])
+        {
+            v.push_back(arr[i]);
+            v.push_back(arr[j]);
+            i++;
+            j--;
+        }
+        else if (arr[i] < k - arr[j])
+        {
+            i++;
+        }
+        else
+        {
+            j--;
+        }
+    }
+    return v;
+}
+
+// using hashing
+// O(N) time complexity
+vector<int> pairsum2(vector<int> arr, int n, int k)
+{
+    unordered_set<int> s;
+    vector<int> result;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        int x = k - arr[i];
+        if (s.find(x) != s.end())
+        {
+            result.push_back(x);
+            result.push_back(arr[i]);
+            return result;
+        }
+        s.insert(arr[i]);
+    }
+}
+
+int main()
+{
+    // vector<int> arr = {2, 1, 8, 6, -2, 5, 3, 0};
+    vector<int> arr = {10, 5, 2, 3, -6, 9, 11};
+    int n = arr.size();
+    int k;
+    cin >> k;
+    vector<int> ans;
+    ans = pairsum(arr, n, k);
+    // ans = pairsum2(arr, n, k);
+    for (auto x : ans)
+    {
+        cout << x << " ";
+    }
+    return 0;
+}
