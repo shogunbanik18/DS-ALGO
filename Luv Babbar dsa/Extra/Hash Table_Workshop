@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+#include <unordered_map>
+using namespace std;
+
+int main()
+{
+    unordered_map<string, int> menu;
+
+    menu["Maggi"] = 15;
+    menu["lassi"] = 35;
+    menu["kurkure"] = 135;
+    menu["lason"] = 13;
+    menu["chips"] = 55;
+    menu["pizza"] = 345;
+    menu["cold Drinks"] = 40;
+
+    menu["lassi"] = (1 + 0.2) * menu["lassi"];
+    string item;
+    cin >> item;
+    // menu.erase("lassi");
+
+    for (pair<string, int> items : menu)
+    {
+        cout << items.first << " " << items.second << endl;
+    }
+    if (menu.count(item) == 0)
+    {
+        cout << "Item not present" << endl;
+    }
+    else
+    {
+        cout << "Item has been Found with cost " << menu[item] << endl;
+    }
+}
