@@ -1,0 +1,35 @@
+class Solution{
+public:
+    int *findTwoElement(int *arr, int n) 
+    {
+        // vector<int> v;
+        int *ans=new int[2];
+        sort(arr,arr+n);
+        unordered_map<int,int>m;
+        
+        for(int i=0;i<n;i++)
+        {
+            m[arr[i]]++;
+        }
+        
+        for(auto x:m)
+        {
+            if(x.second>1)
+            {
+                ans[0]=x.first;
+            }
+        }
+        
+        for(int i=1;i<=n;i++)
+        {
+            if(m[i]==0)
+            {
+                ans[1]=i;
+                break;
+            }
+        }
+        
+        return ans;
+        // code here
+    }
+};
