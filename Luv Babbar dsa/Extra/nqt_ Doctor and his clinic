@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int arr[20], income = 0;
+    int n;
+    cout << "Enter the numbers of integers:" << endl;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] <= 0 or arr[i] > 120)
+        {
+            cout << "INVALID !" << endl;
+        }
+        else if (arr[i] <= 17)
+        {
+            income = income + 200;
+        }
+        else if (arr[i] < 40)
+        {
+            income = income + 400;
+        }
+        else
+        {
+            income = income + 300;
+        }
+    }
+    cout << "Income is : " << income << endl;
+}
