@@ -1,0 +1,31 @@
+class Solution{
+    public:
+    //Function to count subarrays with sum equal to 0.
+    ll findSubarray(vector<ll> arr, int n ) 
+    {
+        unordered_map<int,int>mp;
+        int sum=0,count=0;
+       
+        for(int i=0; i<n; i++)
+        {
+            
+            sum=sum+arr[i];
+            if(sum==0)
+            {
+                count++;
+            }
+            mp[sum]++;
+        }
+        
+        for(auto x:mp)
+        {
+            if(x.second>1)
+            {
+                count=count+((x.second*(x.second-1))/2);
+                // count=count+(((x.second)*(x.second-1))/2);
+            }
+        }
+        return count;
+        //code here
+    }
+};
