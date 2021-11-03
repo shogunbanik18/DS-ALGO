@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+class node{
+public:
+	int data;
+	node* next;
+
+	node(int data){
+		this->data = data;
+		next = NULL;
+	}
+};
+
+node* deleteTail(node * head)
+{
+    if(head==NULL)
+    {
+        return NULL;
+    }
+    
+    if(head->next==NULL)
+    {
+        delete head;
+        return NULL;
+    }
+    
+    // finding the second last node //    
+    node*temp=head;
+    while(temp->next->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    
+    // deleting the last node 
+    delete(temp->next);
+    
+    // assingnning second last node as last node 
+    temp->next=NULL;
+    return head;
+    //Complete this function 
+    
+}
+
