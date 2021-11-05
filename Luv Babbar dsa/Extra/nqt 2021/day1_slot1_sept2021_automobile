@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int v, w;
+    cin >> v;
+    cout << endl;
+    cin >> w;
+    float tw = ((4 * v) - w) / 2;
+    if ((w & 1) or (2 > w) or (v > w))
+    {
+        cout << "INVALID!" << endl;
+    }
+    float fw = v - tw;
+    cout << tw << " " << fw << endl;
+}
