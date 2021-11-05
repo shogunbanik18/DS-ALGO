@@ -19,6 +19,21 @@ void insertatbottom(stack<int> &s, int data)
     s.push(temp);
 }
 
+void reverse(stack<int> &s)
+{
+    // base case
+    if (s.empty())
+    {
+        return;
+    }
+
+    // recursive case
+    int temp = s.top();
+    s.pop();
+    reverse(s);
+    insertatbottom(s, temp);
+}
+
 int main()
 {
     stack<int> s;
@@ -28,7 +43,8 @@ int main()
     s.push(4);
     // s.push(10);
 
-    insertatbottom(s, 5);
+    // insertatbottom(s, 5);
+    reverse(s);
 
     while (!s.empty())
     {
