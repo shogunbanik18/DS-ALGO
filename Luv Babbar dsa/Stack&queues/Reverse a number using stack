@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int reverse(int n)
+{
+    stack<int>s;
+    int number=n;
+    while(number!=0)
+    {
+        s.push(number%10);
+        number=number/10;
+    }
+    
+    int rev=0;
+    int i=1;
+    while(!s.empty())
+    {
+        rev=rev+(s.top()*i);
+        s.pop();
+        i=i*10;
+    }
+    
+    return rev;
+	
+}
