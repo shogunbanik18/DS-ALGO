@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+// #include<iostream>
+// #include<string>
+// #include<algorithm>
+using namespace std;
+
+int main()
+{
+    // string str;
+    // getline(cin, str);
+    // cout << str << endl;
+
+    string s1 = "abc";
+    string s2 = "abc";
+    string s3 = "nincompoop";
+    // cout << s1 + s2 << endl;
+    if (s1.compare(s2) == 0)
+    {
+        cout << "Strings are equal" << endl;
+    }
+    cout << s2.compare(s1) << endl;
+
+    // s1.clear();
+    if (!s1.empty())
+    {
+        cout << "String is not Empty" << endl;
+    }
+
+    // s3.erase(3, 3);
+    // cout << s3 << endl;
+
+    // use of find function
+    cout << s3.find("poop") << endl;
+
+    s3.insert(2, "lol");
+    cout << s3 << endl;
+    cout << s3.size() << endl;
+    // empty function
+
+    for (int i = 0; i < s3.length(); i++)
+    {
+        cout << s3[i] << " ";
+    }
+    cout << endl;
+
+    // substring
+    string s4 = s3.substr(6, 4);
+    cout << s4 << endl;
+
+    string s5 = "786";
+    int x = stoi(s5);
+    cout << x << endl;
+    x = x + 2;
+    cout << to_string(x) + "2" << endl;
+
+    // sorting in lexicographical order
+    string s6 = "xsneforhferoghtrhvnncnvvn";
+    sort(s6.begin(), s6.end());
+    cout << s6 << endl;
+
+    return 0;
+}
