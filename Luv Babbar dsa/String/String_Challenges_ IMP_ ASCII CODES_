@@ -91,7 +91,20 @@ int main()
         }
     }
     cout << endl;
-    cout << " Letter " << result << " has the  maximum frequency of " << maxcount << endl;
+    cout << "Letter " << result << " has the  maximum frequency of " << maxcount << endl;
 
+    // ASCII CODE
+    char ch = 'a';
+    printf("%d", ch);
     return 0;
 }
+
+// ASCII VALUES
+// a = 97;             A=65            special letters : @ =64             numbers: '0'=48
+// b = 98;             B=66                             space ''=32                 '1'=49
+// c = 99              C=67                                                         '2'=50
+// .                   .                                                            '9'=57
+// .                   .
+// .                   .
+// .                   .
+// z = 122;            Z=90
