@@ -80,6 +80,18 @@ int main()
     {
         cout << x.first << " " << x.second << endl;
     }
+    int maxcount = 0;
+    char result;
+    for (auto x : mp)
+    {
+        if (x.second > maxcount)
+        {
+            maxcount = x.second;
+            result = x.first;
+        }
+    }
+    cout << endl;
+    cout << " Letter " << result << " has the  maximum frequency of " << maxcount << endl;
 
     return 0;
 }
