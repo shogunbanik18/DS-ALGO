@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+#include <string.h>
+using namespace std;
+
+int main()
+{
+    string str = "adsfihalksdjf";
+    // cout << 'a' - 'A' << endl;
+
+    // converting to upper case
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (str[i] >= 'a' and str[i] <= 'z')
+        {
+            str[i] = str[i] - 32;
+        }
+    }
+    cout << str << endl;
+
+    // converting string to lower case
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (str[i] >= 'A' and str[i] <= 'Z')
+        {
+            str[i] = str[i] + 32;
+        }
+    }
+    cout << str << endl;
+
+    // cout << 'a' - 'a' << endl;
+    transform(str.begin(), str.end(), str.begin(), ::toupper);
+    cout << str << endl;
+
+    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    cout << str << endl;
+
+    string s = "4987293004";
+    sort(s.begin(), s.end(), greater<int>());
+    cout << s << endl;
+
+    // Maximum frequency of array
+    string a = "fjsoiajdiofjeifjjffffff";
+    int freq[26];
+    for (int i = 0; i < 26; i++)
+    {
+        freq[i] = 0;
+    }
+
+    for (int i = 0; i < a.size(); i++)
+    {
+        freq[a[i] - 'a']++;
+    }
+
+    char ans = 'a';
+    int maxf = 0;
+
+    for (int i = 0; i < 26; i++)
+    {
+        if (freq[i] > maxf)
+        {
+            maxf = freq[i];
+            ans = i + 'a';
+        }
+    }
+
+    cout << maxf << " " << ans << endl;
+
+    cout << endl
+         << "Using unordered map" << endl;
+
+    // maximum frequency using unordered_map
+    unordered_map<char, int> mp;
+    string b = "fhihfffdffffffffffsadse";
+    for (int i = 0; i < s.size(); i++)
+    {
+        mp[b[i]]++;
+    }
+
+    for (auto x : mp)
+    {
+        cout << x.first << " " << x.second << endl;
+    }
+
+    return 0;
+}
