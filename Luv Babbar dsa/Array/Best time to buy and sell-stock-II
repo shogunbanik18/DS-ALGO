@@ -38,3 +38,43 @@ int main()
     // cout <<"Buy and sell of single stocks maximum profit is : "<< maxProfit(arr) << endl;
     cout << "Buy and sell of multiple stocks maximum profit is : " << maxProfit2(arr) << endl;
 }
+
+
+
+        Interview Question 
+        for multiple stocks
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxprofit(vector<int> &prices, int n, int k)
+{
+    int profit = 0;
+    while (k != 0)
+    {
+        for (int i = 1; i < n; i++)
+        {
+            if (prices[i] > prices[i - 1])
+            {
+                profit = profit + (prices[i] - prices[i - 1]);
+                k--;
+                if (k == 0)
+                {
+                    break;
+                }
+            }
+        }
+    }
+    return profit;
+}
+
+int main()
+{
+    vector<int> prices = {2, 4, 1};
+    // vector<int> prices = {3, 2, 6, 5, 0, 3};
+    int n = prices.size();
+    int k;
+    cout << "Enter the value of k : \t";
+    cin >> k;
+    cout << "Maximum Profit is : " << maxprofit(prices, n, k) << endl;
+    return 0;
+}
