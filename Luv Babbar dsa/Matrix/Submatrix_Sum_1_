@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define M 4
+#define N 5
+
+int sum(int mat[M][N], int tli, int tlj, int rbi, int rbj)
+{
+    int i, j;
+    int sum = 0;
+    for (i = tli; i <= rbi; i++)
+    {
+        for (j = tlj; j <= rbj; j++)
+        {
+            sum = sum + mat[i][j];
+        }
+    }
+    return sum;
+}
+
+int main()
+{
+    int mat[M][N] = {{1, 2, 3, 4, 6}, {5, 3, 8, 1, 2}, {4, 6, 7, 5, 5}, {2, 4, 8, 9, 4}};
+    int tli, tlj, rbi, rbj;
+    cout << "Enter your Query : " << endl;
+    cout << "Enter the Starting Point : \t";
+    cin >> tli >> tlj;
+    cout << "Enter the Ending Point : \t";
+    cin >> rbi >> rbj;
+    cout << "Submatrix Sum is :\t" << sum(mat, tli, tlj, rbi, rbj) << endl;
+}
