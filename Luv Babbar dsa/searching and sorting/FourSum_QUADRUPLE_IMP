@@ -1,0 +1,39 @@
+vector<vector<int>> fourSum(vector<int> &arr, int k)
+{
+    // Your code goes here
+    sort(arr.begin(), arr.end());
+    int num = arr.size();
+    vector<vector<int>> vs;
+    for (int i = 0; i <= num - 4; i++)
+    {
+        for (int j = i + 1; j <= num - 3; j++)
+        {
+            int l = j + 1, h = num - 1;
+            while (l < h)
+            {
+                if (arr[l] + arr[h] + arr[i] + arr[j] < k)
+                    l++;
+                else if (arr[l] + arr[h] + arr[i] + arr[j] > k)
+                    h--;
+                else
+                {
+                    vector<int> vs1(4, 0);
+                    vs1[0] = arr[i];
+                    vs1[1] = arr[j];
+                    vs1[2] = arr[l];
+                    vs1[3] = arr[h];
+                    vs.push_back(vs1);
+                    while (l < h && arr[l] == vs1[2])
+                        l++;
+                    while (l < h && arr[h] == vs1[3])
+                        h--;
+                }
+            }
+            while (j + 1 < num && arr[j + 1] == arr[j])
+                j++;
+        }
+        while (i + 1 < num && arr[i + 1] == arr[i])
+            i++;
+    }
+    return vs;
+}
