@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int countvowels(string str)
+{
+    int n = str.size();
+    int count = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if ((str[i] == 'a') or (str[i] == 'e') or (str[i] == 'i') or (str[i] == 'o') or (str[i] == 'u'))
+        {
+            count = count + 1;
+        }
+        else if ((str[i] == 'A') or (str[i] == 'E') or (str[i] == 'I') or (str[i] == 'O') or (str[i] == 'U'))
+        {
+            count = count + 1;
+        }
+    }
+    return count;
+}
+
+int main()
+{
+    string str;
+    // cout << "Enter a string : \t";
+    // getline(cin, str);
+    str = "Shogun";
+    cout << countvowels(str) << endl;
+    return 0;
+}
