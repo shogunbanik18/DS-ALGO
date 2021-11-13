@@ -36,26 +36,27 @@ Node *insert(Node *root, int key)
     return root;
 }
 
+// O(H) Time complexity
+// log(N)<=O(H)<=N Depends on the structure if the binary tree
 bool search(Node *root, int key)
 {
     if (root == NULL)
     {
-        cout << "Not Found"
-             << " ";
+        return false;
     }
 
     if (key == root->key)
     {
-        cout << "Element is found ";
+        return true;
     }
 
     if (key < root->key)
     {
-        search(root->left, key);
+        return search(root->left, key);
     }
     else if (key > root->key)
     {
-        search(root->right, key);
+        return search(root->right, key);
     }
 }
 
@@ -72,6 +73,68 @@ void printInOrder(Node *root)
     printInOrder(root->right);
 }
 
+Node *findMin(Node *root)
+{
+    while (root->left != NULL)
+    {
+        root = root->left;
+    }
+    return root;
+}
+
+// BST Deletion
+Node *remove(Node *root, int key)
+{
+    if (root == NULL)
+    {
+        return NULL;
+    }
+
+    else if (key < root->key)
+    {
+        root->left = remove(root->left, key);
+    }
+
+    else if (key > root->key)
+    {
+        root->right = remove(root->right, key);
+    }
+
+    else
+    {
+        // case 1:   0 children
+        if (root->left == NULL and root->right == NULL)
+        {
+            delete root;
+            root = NULL;
+        }
+
+        // case 2:   1 children
+        else if (root->left == NULL)
+        {
+            Node *temp = root;
+            root = root->right;
+            delete temp;
+        }
+
+        else if (root->right == NULL)
+        {
+            Node *temp = root;
+            root = root->left;
+            delete temp;
+        }
+
+        // case 3:   2 children
+        else
+        {
+            Node *temp = findMin(root->right);
+            root->key = temp->key;
+            root->right = remove(root->right, temp->key);
+        }
+        return root;
+    }
+}
+
 int main()
 {
     Node *root = NULL;
@@ -81,8 +144,12 @@ int main()
     {
         root = insert(root, x);
     }
+    int key;
+    cin >> key;
     printInOrder(root);
     cout << endl;
-    search(root, 19);
+    cout << search(root, key) << endl;
+    root = remove(root, key);
+    printInOrder(root);
     return 0;
 }
