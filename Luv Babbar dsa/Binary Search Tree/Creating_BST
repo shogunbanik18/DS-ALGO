@@ -135,21 +135,81 @@ Node *remove(Node *root, int key)
     }
 }
 
-int main()
+// Challenge : Printing all elements of BST which lie in range of k1 and k2
+void printRange(Node *root, int k1, int k2)
 {
-    Node *root = NULL;
-    int arr[] = {8, 3, 10, 1, 6, 14, 4, 7, 13};
-
-    for (int x : arr)
+    // Base case
+    if (root == NULL)
     {
-        root = insert(root, x);
+        return;
     }
-    int key;
-    cin >> key;
-    printInOrder(root);
-    cout << endl;
-    cout << search(root, key) << endl;
-    root = remove(root, key);
-    printInOrder(root);
-    return 0;
+
+    if (root->key >= k1 and root->key <= k2)
+    {
+        printRange(root->left, k1, k2);
+        cout << root->key << " ";
+        printRange(root->right, k1, k2);
+    }
+
+    else if (root->key > k2)
+    {
+        printRange(root->left, k1, k2);
+    }
+    else
+    {
+        printRange(root->right, k1, k2);
+    }
 }
+
+// Root to Leaf Node
+// void printRoot2LeafPaths(Node *root, vector<int> &path)
+{
+    //     // base case
+    //     if (root == NULL)
+    //     {
+    //         return;
+    //     }
+
+    //     if (root->left == NULL and root->right == NULL)
+    //     {
+    //         for (int node : path)
+    //         {
+    //             cout << node << "->";
+    //         }
+    //         cout << root->key << " ";
+    //         cout << endl;
+    //         return;
+    //     }
+
+    //     // recursive case
+    //     path.push_back(root->key);
+    //     printRoot2LeafPaths(root->left, path);
+    //     printRoot2LeafPaths(root->right, path);
+    //     path.pop_back();
+    //     return;
+    // }
+
+    int main()
+    {
+        Node *root = NULL;
+        int arr[] = {8, 3, 10, 1, 6, 14, 4, 7, 13};
+        // int arr[] = {1, 2, 4, -1, -1, 5, 7, -1, -1, -1, 3, -1, 6, -1, -1};
+
+        for (int x : arr)
+        {
+            root = insert(root, x);
+        }
+        // int key;
+        // cin >> key;
+        // printInOrder(root);
+        // cout << endl;
+        // cout << search(root, key) << endl;
+        // root = remove(root, key);
+        // printInOrder(root);
+
+        printRange(root, 5, 12);
+
+        vector<int> path;
+        // printRoot2LeafPaths(root, path);
+        return 0;
+    }
