@@ -1,54 +1,70 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Node
 {
-  public:
-   int key;
-   Node *left;
-   Node *right;
+public:
+    int key;
+    Node *left;
+    Node *right;
 
-   Node(int key){
-       this->key = key;
-       left = right  = NULL;
-   }
+    Node(int key)
+    {
+        this->key = key;
+        left = right = NULL;
+    }
 };
 
-bool isBSTUtil(Node* root, int min, int max)
+// inorder traversal
+Node *insert(Node *root, int key)
 {
-      if(root==NULL)
+    // base case
+    if (root == NULL)
+    {
+        return new Node(key);
+    }
+
+    // recursive case
+    if (key < root->key)
+    {
+        root->left = insert(root->left, key);
+    }
+    else
+    {
+        root->right = insert(root->right, key);
+    }
+    return root;
+}
+
+bool check(Node *root, int min, int max)
+{
+    // base case
+    if (root == NULL)
     {
         return true;
     }
-    
-    if(root->key< min or root->key >max)
+
+    // overflow case
+    if (root->key < min or root->key > max)
     {
         return false;
     }
-    return isBSTUtil(root->left,min,root->key) and  isBSTUtil(root->right, root->key, max);
+    return check(root->left, min, root->key) and check(root->right, root->key, max);
 }
 
-bool isBST(Node * root)
+bool isBst(Node *root)
 {
-    //complete this method
-    // base case 
-    // if(root==NULL)
-    // {
-    //     return ;
-    // }
-    
-    // if(root->left>root->key)
-    // {
-    //     return false;
-    // }
-    
-    // if(root->right<root->key)
-    // {
-    //     return false;
-    // }
-    
-    // return true;
-      return isBSTUtil(root, INT_MIN,INT_MAX);
-    
-    
+    return check(root, INT_MIN, INT_MAX);
+}
+
+int main()
+{
+    Node *root = NULL;
+    int arr[] = {8, 3, 10, 1, 6, 14, 4, 7, 13};
+
+    for (int x : arr)
+    {
+        root = insert(root, x);
+    }
+    cout << isBst(root) << endl;
 }
