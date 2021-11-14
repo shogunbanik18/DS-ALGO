@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+  public:
+   int key;
+   Node *left;
+   Node *right;
+
+   Node(int key){
+       this->key = key;
+       left = right  = NULL;
+   }
+};
+
+void mirror(Node*root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    else
+    {
+        struct Node*temp;
+        mirror(root->left);
+        mirror(root->right);
+        
+        // swaping the two pointers
+        temp=root->left;
+        root->left=root->right;
+        root->right=temp;
+    }
+}
+
+Node* mirrorBST(Node * root)
+{
+    //complete this method
+    mirror(root);
+    return root;
+}
