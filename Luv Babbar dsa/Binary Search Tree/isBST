@@ -68,3 +68,28 @@ int main()
     }
     cout << isBst(root) << endl;
 }
+
+
+
+// gfg //
+class Solution
+{
+    public:
+    //Function to check whether a Binary Tree is BST or not.
+    bool check(Node*root,int min,int max)
+    {
+        // base case
+        if(root==NULL)
+        {
+            return true;
+        }
+        
+        return check(root->left,min,root->data) and check(root->right,root->data,max) and (root->data>min && root->data<max);
+    }
+    
+    bool isBST(Node* root) 
+    {
+        return check(root,INT_MIN,INT_MAX);
+    }
+    
+};
