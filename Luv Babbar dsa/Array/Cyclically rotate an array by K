@@ -32,3 +32,72 @@ int main()
     // printarr(arr);
     return 0;
 }
+
+// O(N) approach
+void reverse(int start, int end, int arr[])
+{
+    while (start < end)
+    {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+void rotatebyk(int arr[], int k)
+{
+    int n = sizeof(arr) / sizeof(int);
+    k = k % n;
+    reverse(0, n - k - 1, arr);
+    reverse(n - k, n - 1, arr);
+    reverse(0, n - 1, arr);
+}
+
+void printarr(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+}
+
+
+// gfg //
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> rotate(int nums[], int n, int k)
+{
+
+    if (k > n)
+        k = k % n;
+
+    vector<int> ans(n);
+
+    for (int i = 0; i < k; i++)
+    {
+        ans[i] = nums[n - k + i];
+    }
+
+    int index = 0;
+    for (int i = k; i < n; i++)
+    {
+        ans[i] = nums[index++];
+    }
+    return ans;
+}
+
+int main()
+{
+    int Array[] = {10, 20, 30, 40, 50};
+    int N = sizeof(Array) / sizeof(Array[0]);
+    int K = 2;
+
+    vector<int> ans = rotate(Array, N, K);
+    for (int i = 0; i < N; ++i)
+    {
+        cout << ans[i] << ' ';
+    }
+}
