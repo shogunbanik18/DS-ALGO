@@ -1,0 +1,34 @@
+class Solution
+{
+public:
+
+    vector<Node*>v;
+    void helper(Node*root)
+    {
+        if(!root)
+        {
+            return;
+        }
+        helper(root->left);
+        v.push_back(root);
+        helper(root->right);
+    }
+    
+    void populateNext(Node *root)
+    {
+        // base case
+        helper(root);
+        for(int i=0;i<v.size();i++)
+        {
+            if(i==v.size()-1)
+            {
+                v[i]->next=NULL;
+            }
+            else
+            {
+                v[i]->next=v[i+1];
+            }
+        }
+            return;
+    }
+};
