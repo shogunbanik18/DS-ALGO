@@ -1,0 +1,124 @@
+TC : 2*O(N*M)
+SC: O(N)+O(M)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> makeZeroes(vector<vector<int>> arr)
+{
+    vector<int>r,c;
+    int n=arr.size();
+    int m=arr[0].size();
+    
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(arr[i][j]==0)
+            {
+                r.push_back(i);
+                c.push_back(j);
+            }
+        }
+    }
+    
+    for(auto x:r)
+    {
+        for(int i=0;i<n;i++)
+        {
+            arr[x][i]=0;
+        }
+    }
+    
+    for(auto x:c)
+    {
+        for(int j=0;j<m;j++)
+        {
+            arr[j][x]=0;
+        }
+    }
+    
+    return arr;
+    // your code goes here
+
+    
+}
+
+
+TC : 2*O(N*M)
+SC: O(1)
+
+class Solution {
+public:
+    // void setZeroes(vector<vector<int>>& matrix) 
+//     { 
+//         vector<int>r,c;
+//         int n=matrix.size();
+//         int m=matrix[0].size();
+        
+//         for(int i=0;i<n;i++)
+//         {
+//             for(int j=0;j<m;j++)
+//             {
+//                 if(matrix[i][j]==0)
+//                 {
+//                     r.push_back(i);
+//                     c.push_back(j);
+//                 }
+//             }
+//         }
+        
+//         for(auto x:r)
+//         {
+//             for(int i=0;i<n;i++)
+//             {
+//                 matrix[x][i]=0;
+//             }
+//         }
+        
+//         for(auto x:c)
+//         {
+//             for(int j=0;j<n;j++)
+//             {
+//                 matrix[j][x]=0;
+//             }
+//         }
+//         // return matrix;
+//     }
+    
+    
+     void setZeroes(vector<vector<int>>& matrix) 
+     {
+         int col0=1,rows=matrix.size(),cols=matrix[0].size();
+         
+         for(int i=0;i<rows;i++)
+         {
+             if(matrix[i][0]==0)
+             {
+                 col0=0;
+             }
+             for(int j=1;j<cols;j++)
+             {
+                 if(matrix[i][j]==0)
+                 {
+                     matrix[i][0]=matrix[0][j]=0;
+                 }
+             }
+         }
+         
+         for(int i=rows-1;i>=0;i--)
+         {
+             for(int j=cols-1;j>=1;j--)
+             {
+                 if(matrix[i][0]==0 or matrix[0][j]==0)
+                 {
+                     matrix[i][j]=0;
+                 }
+             }
+             if(col0==0)
+             {
+                 matrix[i][0]=0;
+             }
+         }
+     }
+};
