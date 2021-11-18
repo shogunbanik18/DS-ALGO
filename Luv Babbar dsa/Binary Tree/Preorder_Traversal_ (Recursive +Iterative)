@@ -1,0 +1,73 @@
+// Preorder Traversal of Binary Tree
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int data)
+    {
+        this->data = data;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
+// Recursive Approach
+void preorder(Node *root)
+{
+    // base case
+    if (root == NULL)
+    {
+        return;
+    }
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+// Iterative Approach
+void preorder2(Node *root)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    stack<Node *> s;
+    s.push(root);
+    while (!s.empty())
+    {
+        Node *curr = s.top();
+        s.pop();
+        cout << curr->data << " ";
+        if (curr->right)
+        {
+            s.push(curr->right);
+        }
+        if (curr->left)
+        {
+            s.push(curr->left);
+        }
+    }
+}
+
+int main()
+{
+    Node *root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->right->left = new Node(5);
+    root->right->right = new Node(6);
+    root->right->left->left = new Node(7);
+    root->right->left->right = new Node(8);
+    // preorder(root);
+    preorder2(root);
+    // preorderIterative(root);
+    return 0;
+}
