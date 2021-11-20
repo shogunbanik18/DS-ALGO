@@ -1,0 +1,118 @@
+/* A binary tree node has data, pointer to left child
+   and a pointer to right child /
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+}; */
+
+class Solution {
+  public:
+    // Function to convert a binary tree into its mirror tree.
+
+
+void mirror(struct Node* node)
+{
+    // base case 
+    if(node==NULL)
+    {
+        return;
+    }
+    
+    mirror(node->left);
+    mirror(node->right);
+    swap(node->left,node->right);
+    // code here
+}
+};
+
+
+// code //
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left;
+    Node *right;
+    Node(int d)
+    {
+        data = d;
+        left = right = NULL;
+    }
+};
+
+// Building a tree
+Node *buildtree()
+{
+    int d;
+    cin >> d;
+    if (d == -1)
+    {
+        return NULL;
+    }
+    Node *n = new Node(d);
+    n->left = buildtree();
+    n->right = buildtree();
+    return n;
+}
+
+void inorder(Node *root)
+{
+    // Base case
+    if (root == NULL)
+    {
+        return;
+    }
+
+    // Recursive case
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+// Using swap approach
+void mirror(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    Node *t = root->left;
+    root->left = root->right;
+    root->right = t;
+
+    if (root->left)
+    {
+        mirror(root->left);
+    }
+    if (root->right)
+    {
+        mirror(root->right);
+    }
+}
+
+int main()
+{
+    // Node *root = buildtree();
+    Node *root = new Node(5);
+    root->left = new Node(3);
+    root->right = new Node(6);
+    root->left->left = new Node(2);
+    root->left->right = new Node(4);
+    inorder(root);
+    mirror(root);
+    cout << endl;
+    inorder(root);
+    return 0;
+}
