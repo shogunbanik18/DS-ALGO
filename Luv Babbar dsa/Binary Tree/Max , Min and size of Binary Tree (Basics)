@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int data)
+    {
+        this->data = data;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
+void inorder(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+// tc: O(N)
+// SC: O(H)
+int maxNode(Node *root)
+{
+    if (root == NULL)
+    {
+        return INT_MIN;
+    }
+    return max(root->data, max(maxNode(root->left), maxNode(root->right)));
+}
+
+int size(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int ans = size(root->left) + size(root->right) + 1;
+    return ans;
+}
+
+int main()
+{
+    Node *root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->right->left = new Node(5);
+    root->right->right = new Node(6);
+    root->right->left->left = new Node(7);
+    root->right->left->right = new Node(8);
+    inorder(root);
+    cout << endl;
+    cout << size(root) << endl;
+    cout << maxNode(root) << endl;
+
+    return 0;
+}
