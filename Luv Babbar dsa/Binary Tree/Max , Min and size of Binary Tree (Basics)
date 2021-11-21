@@ -39,6 +39,17 @@ int maxNode(Node *root)
     return max(root->data, max(maxNode(root->left), maxNode(root->right)));
 }
 
+// tc: O(N)
+// SC: O(H)
+int minNode(Node *root)
+{
+    if (root == NULL)
+    {
+        return INT_MAX;
+    }
+    return min(root->data, min(minNode(root->left), minNode(root->right)));
+}
+
 int size(Node *root)
 {
     if (root == NULL)
@@ -64,6 +75,6 @@ int main()
     cout << endl;
     cout << size(root) << endl;
     cout << maxNode(root) << endl;
-
+    cout << minNode(root) << endl;
     return 0;
 }
