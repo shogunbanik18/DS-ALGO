@@ -1,0 +1,45 @@
+/* A binary tree node structure
+
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+ */
+
+class Solution{
+    public:
+    //Function to check whether a binary tree is balanced or not.
+    int height(Node*root,bool &ans)
+    {
+        // base case 
+        if(root==NULL)
+        {
+            return 0;
+        }
+        int l1= height(root->left,ans);
+        int r1 = height(root->right,ans);
+        
+        
+        if(abs(l1-r1)>1)
+        {
+            ans=false;
+            return 1+max(l1,r1);
+        }
+       return 1+max(l1,r1);
+    }        
+    
+    bool isBalanced(Node *root)
+    {
+      bool ans=true;
+      height(root,ans);
+       return ans;
+        //  Your Code here
+    }
+};
