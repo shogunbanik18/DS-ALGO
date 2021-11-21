@@ -1,0 +1,47 @@
+
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    // Return the Kth smallest element in the given BST
+    
+    
+     void inorder(Node*root,vector<int>&v)
+    {
+        // Base case 
+        if(root==NULL)
+        {
+            return ;
+        }
+        
+        // Recursive Case 
+        inorder(root->left,v);
+        v.push_back(root->data);
+        inorder(root->right,v);
+    }
+    
+    int KthSmallestElement(Node *root, int K) 
+    {
+        vector<int>v;
+        inorder(root,v);
+        sort(v.begin(),v.end());
+        if(K>v.size())
+        {
+            return -1;
+        }
+        int ans=K-1;
+        return v[ans];
+       
+        // return v[K-1];
+    }
+};
