@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+
+int tillingProblem(int n, int m)
+{
+    if(n<=m-1)
+    {
+        return 1;
+    }
+    return tillingProblem(n-1,m)+tillingProblem(n-m,m);
+}
