@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
+    int key;
+    Node *left;
+    Node *right;
+
+    Node(int key)
+    {
+        this->key = key;
+        this->left = this->right = NULL;
+    }
+};
+
+void inorder(Node *root, vector<int> &v)
+{
+    // base case
+    if (root == NULL)
+    {
+        return;
+    }
+
+    inorder(root->left, v);
+    v.push_back(root->key);
+    inorder(root->right, v);
+}
+
+void printinorder(vector<int> &v)
+{
+    for (auto x : v)
+    {
+        cout << x << " ";
+    }
+}
+
+void median(vector<int> v)
+{
+    int n = v.size();
+    if (n % 2 == 0)
+    {
+        int a = n / 2;
+        int b = (n / 2) - 1;
+        // cout << v[a] << endl;
+        // cout << v[b] << endl;
+        int c = (v[a] + v[b]) / 2;
+        cout << c << endl;
+    }
+    else
+    {
+        int x = n / 2;
+        cout << v[x] << endl;
+    }
+}
+
+int main()
+{
+    vector<int> v;
+    Node *root = new Node(6);
+    root->left = new Node(3);
+    root->right = new Node(8);
+    root->left->left = new Node(1);
+    root->left->right = new Node(4);
+    root->right->left = new Node(7);
+    // root->right->right = new Node(9);
+    inorder(root, v);
+    printinorder(v);
+    cout << endl;
+    median(v);
+}
