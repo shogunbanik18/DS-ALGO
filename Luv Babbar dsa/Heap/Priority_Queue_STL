@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// int main()
+// {
+//     vector<int> arr = {10, 15, 20, 13, 6, 90};
+//     int n = arr.size();
+
+//     priority_queue<int> q;
+//     for (auto x : arr)
+//     {
+//         q.push(x);
+//     }
+
+//     while (!q.empty())
+//     {
+//         cout << q.top() << " ";
+//         q.pop();
+//     }
+// }
+
+// // for min heap
+// int main()
+// {
+//     vector<int> arr = {10, 15, 20, 13, 6, 90};
+//     int n = arr.size();
+
+//     priority_queue<int, vector<int>, greater<int>> q;
+//     for (auto x : arr)
+//     {
+//         q.push(x);
+//     }
+
+//     while (!q.empty())
+//     {
+//         cout << q.top() << " ";
+//         q.pop();
+//     }
+// }
+
+// Custom Compare
+// for min heap
+
+class Compare
+{
+public:
+    // operator overloading concept
+    bool operator()(int a, int b)
+    {
+        return a < b;
+    }
+};
+
+int main()
+{
+    vector<int> arr = {10, 15, 20, 13, 6, 90};
+    int n = arr.size();
+
+    priority_queue<int, vector<int>, Compare> q;
+    for (auto x : arr)
+    {
+        q.push(x);
+    }
+
+    while (!q.empty())
+    {
+        cout << q.top() << " ";
+        q.pop();
+    }
+}
