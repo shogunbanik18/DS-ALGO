@@ -1,0 +1,32 @@
+//Function to count number of nodes in BST that lie in the given range.
+// Inorder Traversal 
+void inorder(Node*root,vector<int>&v)
+{
+    // Base case 
+    if(root==NULL)
+    {
+        return;
+    }
+  
+//   INORDER : LEFT ROOT RIGHT    
+    // recursive case 
+    inorder(root->left,v);
+    v.push_back(root->data);
+    inorder(root->right,v);
+}
+
+int getCount(Node *root, int l, int h)
+{
+    vector<int>v;
+    int count=0;
+    inorder(root,v);
+    for(int i=0;i<=v.size()-1;i++)
+    {
+       if(v[i]>=l and v[i]<=h)
+       {
+           count++;
+       }
+    }
+    return count;
+  // your code goes here   
+}
