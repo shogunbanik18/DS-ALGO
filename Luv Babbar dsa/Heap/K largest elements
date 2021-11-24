@@ -1,0 +1,45 @@
+class Solution{
+public:	
+
+    //sorting Based Approach 
+	vector<int> kLargest(int arr[], int n, int k)
+	{
+	    vector<int>v;
+	    vector<int>ans;
+	    for(int i=0;i<n;i++)
+	    {
+	        v.push_back(arr[i]);
+	    }
+	   // sort(v.begin(),v.end(),greater<int>());
+	   // for(int i=0;i<k;i++)
+	   // {
+	   //     ans.push_back(v[i]);
+	   // }
+	   sort(v.begin(),v.end());
+	   for(int i=v.size()-1;i>=n-k;i--)
+	   {
+	       ans.push_back(v[i]);
+	   }
+	    return ans;
+	    // code here
+	}
+	
+    // Heaps //
+    // 	Priority Queue Based Approach 
+    vector<int> kLargest(int arr[], int n, int k)
+	{
+	    vector<int>v;
+	    priority_queue<int,vector<int>>q;
+	    for(int i=0;i<n;i++)
+	    {
+	        q.push(arr[i]);
+	    }
+	    while(k-- and !q.empty())
+	    {
+	        v.push_back(q.top());
+	        q.pop();
+	    }
+	    return v;
+	}
+
+};
