@@ -1,0 +1,29 @@
+//Function to find the lowest common ancestor in a BST. 
+Node* LCA(Node *root, int n1, int n2)
+{
+    // base case /
+    if(root==NULL or root->data==n1  or root->data==n2 )
+    {
+        return root;
+    }
+    
+    // recursive case 
+    Node*left = LCA(root->left,n1,n2);
+    Node*right =LCA(root->right,n1,n2);
+    
+    if(left==NULL)
+    {
+        return right;
+    }
+    
+    if(right==NULL)
+    {
+        return left;
+    }
+    
+    else if(left!=NULL and right!=NULL)
+    {
+        return root;
+    }
+   //Your code here
+}
