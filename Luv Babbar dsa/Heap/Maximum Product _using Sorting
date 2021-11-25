@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxProduct(vector<int> &nums)
+{
+    // sorting based Approach
+    sort(nums.begin(), nums.end());
+    int n = nums.size();
+    int i = n - 1;
+    int j = n - 2;
+    int multiply = (nums[i] - 1) * (nums[j] - 1);
+    return multiply;
+    // your code goes here
+}
+
+int main()
+{
+    vector<int> nums = {3, 4, 5, 2};
+    cout << maxProduct(nums);
+    return 0;
+}
+
+// tc: O(nlogn) //
