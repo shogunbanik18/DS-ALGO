@@ -1,0 +1,31 @@
+if (freq === null || freq.length === 0) {
+    return 0;
+  }
+  let count = 0;
+  for (let i = 1; i < freq.length - 1; i++) {
+    let pairs1 = Math.min(freq[i - 1], freq[i]);
+    let pairs2 = Math.min(freq[i], freq[i + 1]);
+    if (pairs1 >= pairs2) {
+      count += pairs1;
+      freq[i] -= pairs1;
+      freq[i - 1] -= pairs1;
+    } else {
+      count += pairs2;
+      freq[i] -= pairs2;
+      freq[i + 1] -= pairs2;
+    }
+  }
+  for (let i = 0; i < freq.length; i++) {
+    let pairs = Math.floor(freq[i] / 2);
+    count += pairs;
+    freq[i] = freq[i] % 2 === 0 ? 0 : 1;
+    if (i > 0 && freq[i - 1] === 1 && freq[i] === 1) {
+      count += 1;
+      freq[i - 1] = 0;
+      freq[i] = 0;
+    }
+  }
+  return count;
+  // T.C: O(N)
+  // S.C: O(1)
+}
