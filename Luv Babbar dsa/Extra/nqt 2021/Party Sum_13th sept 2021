@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxguest(int t, vector<int> E, vector<int> L)
+{
+    int maxsum = 0;
+    int sum = 0;
+    int i = 0;
+    while (i < t)
+    {
+        sum += E[i] - L[i];
+        maxsum = max(maxsum, sum);
+        i++;
+    }
+    return maxsum;
+}
+
+int main()
+{
+    int t = 5;
+    // cin >> t;
+    vector<int> E = {7, 0, 5, 1, 3};
+    vector<int> L = {1, 2, 1, 3, 4};
+    cout << maxguest(t, E, L) << endl;
+}
