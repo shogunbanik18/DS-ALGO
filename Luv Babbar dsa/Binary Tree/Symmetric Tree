@@ -57,3 +57,29 @@ bool isSymmetric(Node* root)
     return false;
         //your code goes here
 }
+
+
+
+//Recursive solution leet code //
+
+class Solution {
+public:
+    bool mirror(TreeNode*p,TreeNode*q)
+    {
+        if(p==NULL and q==NULL)
+        {
+            return true;
+        }
+        
+        if((p!=NULL and q==NULL )or(p==NULL and q!=NULL ) or(p->val!=q->val))
+        {
+            return false;
+        }
+        return mirror(p->right,q->left) and mirror(p->left,q->right);
+    }
+    
+    bool isSymmetric(TreeNode* root) 
+    {
+        return mirror(root->left,root->right);   
+    }
+};
