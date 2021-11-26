@@ -1,0 +1,44 @@
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+}; */
+
+class Solution {
+  public:
+    int height(Node*root)
+    {
+        // Base case 
+        if(root==NULL)
+        {
+            return 0;
+        }
+        
+        int h1=height(root->left);
+        int h2=height(root->right);
+        return 1+ max(h1,h2);
+    }
+    // Function to return the diameter of a Binary Tree.
+    int diameter(Node* root)
+    {
+        // base case 
+        if(root==NULL)
+        {
+            return 0;
+        }
+        
+        // recursive case 
+        int D1=height(root->left) + height(root->right);
+        int D2=diameter(root->left);
+        int D3=diameter(root->right);
+        
+        return max(D1+1,max(D2,D3));
+        
+        // Your code here
+    }
