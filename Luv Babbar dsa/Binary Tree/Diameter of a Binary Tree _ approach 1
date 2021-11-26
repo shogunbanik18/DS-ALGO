@@ -10,6 +10,8 @@ struct Node
     }
 }; */
 
+
+ // TC : O(N^2) //
 class Solution {
   public:
     int height(Node*root)
