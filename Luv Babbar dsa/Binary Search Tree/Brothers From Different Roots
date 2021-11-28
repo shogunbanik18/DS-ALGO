@@ -1,0 +1,57 @@
+/*Structure of the Node of the BST is as
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+// TC: o(N+M)
+// SC : O(M)
+
+class Solution
+{
+public:
+    void inorder(Node*root,vector<int>&a)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        
+        inorder(root->left,a);
+        a.push_back(root->data);
+        inorder(root->right,a);
+    }
+    
+    int countPairs(Node* root1, Node* root2, int x)
+    {
+        int count=0;
+        vector<int>A;
+        vector<int>B;
+        unordered_map<int,int>mp;
+        inorder(root1,A);
+        inorder(root2,B);
+        
+        for(int i=0;i<A.size();i++)
+        {
+            mp[A[i]]++;
+        }
+        
+        for(int j=0;j<B.size();j++)
+        {
+            int target=x-B[j];
+            if(mp[target]>0)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+};
