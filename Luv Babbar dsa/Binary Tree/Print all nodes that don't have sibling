@@ -1,0 +1,47 @@
+
+//User function Template for C++
+
+/* Tree node structure  used in the program
+ struct Node
+ {
+     int data;
+     Node* left, *right;
+}; */
+
+
+
+void prints(Node *root,vector<int>&v){
+
+    if(root==NULL)
+    {
+        return ;
+    }
+    
+    if(root->left==NULL and root->right!=NULL)
+    {
+        v.push_back(root->right->data);
+    }
+    
+    if(root->left!=NULL and root->right==NULL)
+    {
+        v.push_back(root->left->data);
+    }
+    
+   prints(root->left,v);
+   prints(root->right,v);
+    
+}
+
+vector<int> noSibling(Node* node)
+{
+    vector<int>v;
+   prints(node,v);
+   if(v.size()==0){
+       v.push_back(-1);
+   }
+   sort(v.begin(),v.end());
+   return v;
+    
+    
+    // code here
+}
