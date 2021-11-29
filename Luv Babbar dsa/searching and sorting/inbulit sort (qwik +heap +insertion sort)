@@ -1,0 +1,2 @@
+inbuilt stl sort in cpp = Quick sort + Heap sort + Insertion sort
+tc : O(NlogN)
