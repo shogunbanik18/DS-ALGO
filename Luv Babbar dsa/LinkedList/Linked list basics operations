@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node(int val)
+    {
+        this->data = val;
+    }
+};
+
+// insertion in a linked list
+void insert(int data, Node *head, int pos)
+{
+    Node *temp = new Node(data);
+    // corner case
+    if (pos == 0)
+    {
+        temp->next = head;
+        head = temp;
+    }
+
+    Node *prev = head;
+    for (int i = 0; i < pos - 1; i++)
+    {
+        prev = prev->next;
+    }
+    temp->next = prev->next;
+    prev->next = temp;
+}
+
+// Deletion in a linked list
+void insert(Node *head, int pos)
+{
+    // corner case
+    if (pos == 0)
+    {
+        head = head->next;
+        return;
+    }
+
+    Node *prev = head;
+    for (int i = 0; i < pos - 1; i++)
+    {
+        prev = prev->next;
+    }
+    prev->next = prev->next->next;
+}
+
+int main()
+{
+    insert(30, head, 3);
+}
+
+// traversal in linked list
+void traverse(Node *head)
+{
+    // base case
+    if (head == NULL)
+    {
+        return;
+    }
+    Node *curr = head;
+    while (curr != NULL)
+    {
+        cout << curr->data << " ";
+        curr = curr->next;
+    }
+}
+
+// int main()
+// {
+//     Node n1 = new Node(10);
+//     Node n2 = new Node(50);
+//     Node n3 = new Node(30);
+//     Node n4 = new Node(30);
+
+//     Node head = n1;
+//     head->next = n2;
+//     n2->next = n3;
+//     n3->next = n4;
+// }
