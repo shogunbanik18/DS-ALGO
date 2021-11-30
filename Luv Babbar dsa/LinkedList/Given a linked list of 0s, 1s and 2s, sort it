@@ -1,0 +1,70 @@
+
+  Node is defined as
+  struct Node {
+    int data;
+    struct Node *next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+class Solution
+{
+    public:
+    //Function to sort a linked list of 0s, 1s and 2s.
+    Node* segregate(Node *head)
+    {
+        // COUNTING THE NO OF 0S 1S AND 2S 
+        int count0=0;
+        int count1=0;
+        int count2=0;
+        Node* curr=head;
+        
+        while(curr!=NULL)
+        {
+            if(curr->data==0)
+            {
+                count0++;
+            }
+            
+            if(curr->data==1)
+            {
+                count1++;
+            }
+            
+            if(curr->data==2)
+            {
+                count2++;
+            }
+            curr=curr->next;
+        }
+        
+        Node*finalheadd=NULL;
+        Node *finalhead=new Node(0);
+        finalheadd= finalhead;
+        count0--;
+        while(count0>0)
+        {
+            finalhead->next=new Node(0);
+            count0--;
+            finalhead=finalhead->next;
+        }
+        
+         while(count1>0)
+        {
+            finalhead->next=new Node(1);
+            count1--;
+            finalhead=finalhead->next;
+        }
+        
+         while(count2>0)
+        {
+            finalhead->next=new Node(2);
+            count2--;
+            finalhead=finalhead->next;
+        }
+        return finalheadd;
+    }
+};
