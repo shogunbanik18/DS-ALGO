@@ -1,0 +1,65 @@
+
+// TC: O(N^N) //
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void swap(int arr[], int a, int b)
+{
+    int temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+}
+
+void bubblesort(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr, j, j + 1);
+            }
+        }
+    }
+}
+
+void bubblesort_optimised(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        bool swapped = false;
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swapped = true;
+                swap(arr, j, j + 1);
+            }
+        }
+        if (!swapped)
+        {
+            break;
+        }
+    }
+}
+
+void print(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+}
+
+int main()
+{
+    int arr[] = {4, 3, 7, 1, 5};
+    int n = 5;
+    // bubblesort(arr, n);
+    // print(arr, n);
+    bubblesort_optimised(arr, n);
+    print(arr, n);
+    return 0;
+}
