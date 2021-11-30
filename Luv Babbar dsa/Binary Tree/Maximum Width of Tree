@@ -1,0 +1,52 @@
+
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+ */
+
+class Solution {
+  public:
+    // Function to get the maximum width of a binary tree.
+    int getMaxWidth(Node* root) 
+    {
+    // Level order Traversal
+        int max=INT_MIN;
+        queue<Node*>q;
+        q.push(root);
+        
+        
+        while(!q.empty())
+        {
+            int size=q.size();
+            if(size>max)
+            {
+                max=size;
+            }
+            
+            for(int i=0;i<size;i++)
+            {
+                Node*temp=q.front();
+                q.pop();
+                if(temp->left)
+                {
+                    q.push(temp->left);
+                }
+                
+                if(temp->right)
+                {
+                    q.push(temp->right);
+                }
+            }
+        }
+        return max;
+        // Your code here
+    }
+};
