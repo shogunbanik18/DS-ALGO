@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node(int val)
+    {
+        this->data = val;
+    }
+};
+
+Node *middle(Node *head)
+{
+    Node *slow = head;
+    Node *fast = head;
+    while (fast != NULL and fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+}
+
+Node *reverse(Node *head)
+{
+    if (head == NULL or head->next == NULL)
+    {
+        return head;
+    }
+    Node *newHead = reverse(head->next);
+    Node *headnext = head->next;
+    headnext->next = head;
+    head->next = NULL;
+    return newHead;
+}
+
+bool palindrome(Node *head)
+{
+    if (head == NULL)
+    {
+        return true;
+    }
+    Node *mid = middle(head);
+    Node *last = reverse(mid->next);
+    Node *curr = head;
+    while (last != NULL)
+    {
+        if (last->data != curr->data)
+        {
+            return false;
+        }
+        last = last->next;
+        curr = curr->next;
+    }
+    return true;
+}
