@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left;
+    Node *right;
+    Node(int data)
+    {
+        this->data = data;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
+void inorder(Node *root, vector<int> &v)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    inorder(root->left, v);
+    v.push_back(root->data);
+    inorder(root->right, v);
+}
+
+Node *sortedArrayToBST(vector<int> v, int start, int end)
+{
+    /* Base Case */
+    if (start > end)
+    {
+        return NULL;
+    }
+
+    int mid = (start + end) / 2;
+    Node *root = new Node(v[mid]);
+
+    root->left = sortedArrayToBST(v, start, mid - 1);
+    root->right = sortedArrayToBST(v, mid + 1, end);
+
+    return root;
+}
+
+void preorder(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+int main()
+{
+    /* Constructed skewed binary tree is
+                10
+               /
+              8
+             /
+            7
+           /
+          6
+         /
+        5   */
+
+    Node *root = new Node(10);
+    root->left = new Node(8);
+    root->left->left = new Node(7);
+    root->left->left->left = new Node(6);
+    root->left->left->left->left = new Node(5);
+
+    vector<int> v;
+    inorder(root, v);
+    int n = v.size();
+
+    Node *temp = sortedArrayToBST(v, 0, n - 1);
+    cout << "Preorder traversal of balanced Bst is : " << endl;
+    preorder(temp);
+    return 0;
+}
