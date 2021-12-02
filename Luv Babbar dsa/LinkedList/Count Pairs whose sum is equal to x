@@ -1,0 +1,40 @@
+Structure of the node of the linked list is as
+struct Node
+{
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+class Solution{
+  public:
+    // your task is to complete this function
+    int countPairs(struct Node* head1, struct Node* head2, int x) 
+    {
+        Node*curr1=head1;
+        Node*curr2=head2;
+        set<int>s;
+        while(curr1!=NULL)
+        {
+            s.insert(curr1->data);
+            curr1=curr1->next;
+        }
+        
+        int count=0;
+        while(curr2!=NULL)
+        {
+            int target =x -(curr2->data);
+            if(s.find(target)!=s.end())
+            {
+                count++;
+            }
+            curr2=curr2->next;
+        }
+        return count;
+        // Code here
+    }
+};
