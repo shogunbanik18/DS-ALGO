@@ -13,28 +13,51 @@
 // Reverse the list 
     
 
+// int getNthFromLast(Node *head, int n)
+// {
+//     Node*prev=NULL;
+//     Node*curr=head;
+//     Node*temp;
+//     int count=1;
+//     while(curr!=NULL)
+//     {
+//         temp=curr->next;
+//         curr->next=prev;
+//         prev=curr;
+//         curr=temp;
+//     }
+//     head=prev;
+//     while(head!=NULL and count<n)
+//     {
+//         head=head->next;
+//         count++;
+//     }
+//     if(head!=NULL)
+//     {
+//         return head->data;
+//     }
+//     return -1;
+// }
+
 int getNthFromLast(Node *head, int n)
 {
-    Node*prev=NULL;
+    int count=0;
     Node*curr=head;
-    Node*temp;
-    int count=1;
     while(curr!=NULL)
     {
-        temp=curr->next;
-        curr->next=prev;
-        prev=curr;
-        curr=temp;
-    }
-    head=prev;
-    while(head!=NULL and count<n)
-    {
-        head=head->next;
         count++;
+        curr=curr->next;
     }
-    if(head!=NULL)
+    // base case 
+    if(n>count)
     {
-        return head->data;
+        return -1;
     }
-    return -1;
+    Node*curr2=head;
+    int no =count-n;
+    for(int i=0;i<no;i++)
+    {
+        curr2=curr2->next;
+    }
+    return curr2->data;
 }
