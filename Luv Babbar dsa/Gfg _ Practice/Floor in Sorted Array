@@ -1,0 +1,56 @@
+class Solution{
+  public:
+    // Function to find floor of x
+    // n: size of vector
+    // x: element whose floor is to find
+    // int findFloor(vector<long long> v, long long n, long long x)
+    // {
+    //     // int max=INT_MIN;
+    //     for(int i=n-1;i>=0;i--)
+    //     {
+    //         if(v[i]<=x)
+    //         {
+    //             // max=v[i];
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    //     // Your code here
+        
+    // }
+    
+    // Binary Search Approach 
+    int findFloor(vector<long long> v, long long n, long long x)
+    {
+        // int max=INT_MIN;
+        int l=0;
+        int h=n-1;
+        int ans=0;
+        while(l<=h)
+        {
+            int mid =(l+h)/2;
+            if(v[mid]==x)
+            {
+                return mid;
+            }
+            else if(v[mid]>x)
+            {
+                h=mid-1;
+            }
+            else
+            {
+                ans=mid;
+                l=mid+1;
+            }
+        }
+        
+        if(ans>0)
+        {
+            return ans;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+};
