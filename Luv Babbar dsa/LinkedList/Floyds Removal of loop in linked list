@@ -1,0 +1,84 @@
+struct Node
+{
+    int data;
+    Node* next;
+    
+    Node(int val)
+    {
+        data = val;
+        next = NULL;
+    }
+};
+
+*/
+
+class Solution
+{
+    public:
+    //Function to remove a loop in the linked list.
+    // Node* detectloop(Node*head)
+    // {
+    //     Node*slow=head;
+    //     Node*fast=head;
+    //     while(fast!=NULL and fast->next!=NULL)
+    //     {
+    //         slow=slow->next;
+    //         fast=fast->next->next;
+    //         if(slow==fast)
+    //         {
+    //             return slow;
+    //         }
+    //     }
+    //     return NULL;
+    // }
+    
+    
+    // Node*detectfirstNode(Node*head)
+    // {
+    //     Node*meet=detectloop(head);
+    //     Node*start=head;
+    //     while(start!=meet)
+    //     {
+    //         start=start->next;
+    //         meet=meet->next;
+    //     }
+    //     return start;
+    // }
+    
+   
+     void removeLoop(Node* head)
+    {
+        // code here
+        // just remove the loop without losing any nodes
+        if(head==NULL)
+        return;
+        Node *fast=head;
+        Node *slow=head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            fast=fast->next->next;
+            slow=slow->next;
+            if(slow==fast)
+            break;
+        }
+        if(slow==head)
+        {
+            while(slow->next!=fast)
+            slow=slow->next;
+            slow->next=NULL;
+        }
+        else if(slow==fast)
+        {
+            slow=head;
+            while(slow->next != fast->next)
+            {
+                slow=slow->next;
+                fast=fast->next;
+            }
+            fast->next=NULL;
+            
+        }
+        
+        
+    }
+};
