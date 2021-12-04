@@ -1,0 +1,74 @@
+struct Node {
+    int data;
+    struct Node* next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+
+class Solution
+{
+    public:
+    //Function to add two numbers represented by linked list.
+    Node* reverse(Node*head)
+    {
+        Node*prev=NULL;
+        Node*curr=head;
+        Node*temp1;
+        while(curr!=NULL)
+        {
+            temp1=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=temp1;
+        }
+        return prev;
+    }
+    
+    struct Node* addTwoLists(struct Node* first, struct Node* second)
+    {
+        first=reverse(first);
+        second=reverse(second);
+        int c=0;
+        int s=0;
+        Node*temp;
+        Node*res=NULL;
+        Node*curr=NULL;
+        while(first!=NULL or second!=NULL)
+        {
+            s=c+(first?first->data:0)+(second?second->data:0);
+            c=(s>=10)?1:0;
+            s=s%10;
+            temp=new Node(s);
+            if(res==NULL)
+            {
+                res=temp;
+            }
+            else
+            {
+                curr->next=temp;
+            }
+            curr=temp;
+            if(first)
+            {
+                first=first->next;
+            }
+            if(second)
+            {
+                second=second->next;
+            }
+        }
+        if(c>0)
+        {
+            temp=new Node(c);
+            curr->next=temp;
+            curr=temp;
+        }
+        res=reverse(res);
+        return res; 
+        // code here
+    }
+};
