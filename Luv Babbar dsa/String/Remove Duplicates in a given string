@@ -1,0 +1,33 @@
+class Solution{
+public:	
+		
+	string removeDups(string S) 
+	{
+	   //int n=S.length();
+	   //unordered_set<char>mp;
+	   //for(int i=0;i<n;i++)
+	   //{
+	   //    mp.insert(S[i]);
+	   //}
+	   
+	   //string temp="";
+	   //for(auto x:mp)
+	   //{
+	   //    temp=temp+x;
+	   //}
+	   //return temp;
+	   
+	   int n=S.length();
+	   string ans;
+	   unordered_map<char,int>mp;
+	   for(int i=0;i<n;i++)
+	   {
+	       if(mp[S[i]]==0)
+	        {
+	            ans=ans+S[i];
+	        }
+	        mp[S[i]]++;
+	   }
+	   return ans;
+	}
+};
