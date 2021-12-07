@@ -1,0 +1,62 @@
+
+The structure of linked list is the following
+
+struct Node
+{
+    int data;
+    Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+
+// Approach 1 using two vectors //
+class Solution
+{
+    public:
+    
+    Node *compute(Node *head)
+    {
+        vector<int>v1;
+        vector<int>v2;
+        Node*curr=head;
+        while(curr!=NULL)
+        {
+            v1.push_back(curr->data);
+            curr=curr->next;
+        }
+        
+        // TC : O(N^2) 
+        for(int i=0;i<v1.size();i++)
+        {
+            int flag=0;
+            for(int j=i+1;j<v1.size();j++)
+            {
+                if(v1[j]>v1[i])
+                {
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0)
+            {
+                v2.push_back(v1[i]);
+            }
+        }
+        
+        Node*start=new Node(0);
+        Node*temp =start;
+        for(int i=0;i<v2.size();i++)
+        {
+            Node*n=new Node(v2[i]);
+            temp->next=n;
+            temp=temp->next;
+        }
+        temp->next=NULL;
+        return start->next;
+    }
+};
+ 
