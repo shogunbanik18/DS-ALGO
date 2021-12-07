@@ -1,0 +1,71 @@
+/*
+struct Node
+{
+    int data;
+    struct Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+class Solution{
+public:
+    Node* divide(int N, Node *head)
+    {
+        Node*even=NULL;
+        Node*e=NULL;
+        Node*odd=NULL;
+        Node*o=NULL;
+        
+        while(head!=NULL)
+        {
+            if((head->data)%2==0)
+            {
+                if(even==NULL)
+                {
+                    even=head;
+                    e=head;
+                }
+                else
+                {
+                    e->next=head;
+                    e=e->next;
+                }
+            }
+            
+            else if((head->data)%2!=0)
+            {
+                if(odd==NULL)
+                {
+                    odd=head;
+                    o=head;
+                }
+                else
+                {
+                    o->next=head;
+                    o=o->next;
+                }
+            }
+            head=head->next;
+        }
+        
+        if(even!=NULL)
+        {
+            e->next=odd;
+        }
+        
+        if(odd!=NULL)
+        {
+            o->next=NULL;
+        }
+        
+        if(even==NULL)
+        {
+            return odd;
+        }
+        // code here
+        return even;
+    }
+};
