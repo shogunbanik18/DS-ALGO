@@ -1,0 +1,16 @@
+//Function to insert a node in the middle of the linked list.
+Node* insertInMiddle(Node* head, int x)
+{
+    Node*slow=head;
+    Node*fast=head->next;
+    while(fast!=NULL and fast->next!=NULL)
+    {
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    Node*newnode=new Node(x);
+    newnode->next=slow->next;
+    slow->next=newnode;
+    return head;
+	// Cpde here
+}
