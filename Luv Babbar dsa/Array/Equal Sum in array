@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    string equilibrium(int *arr, int n)
+    {
+        // base case 
+        if(n==1 or n==2)
+        {
+            return "NO";
+        }
+        int i=1;
+        int j=n-2;
+        int suml=arr[0];
+        int sumr=arr[n-1];
+        
+        while(i<j)
+        {
+            if(suml<=sumr)
+            {
+                suml=suml+arr[i];
+                i++;
+            }
+            else if(suml>sumr)
+            {
+                sumr=sumr+arr[j];
+                j--;
+            }
+            if(suml==sumr and i==j)
+            {
+                return "YES";
+            }
+        }
+        return "NO";
+        // code here
+    }
+};
