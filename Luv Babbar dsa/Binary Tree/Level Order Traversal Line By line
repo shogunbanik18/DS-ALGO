@@ -1,0 +1,34 @@
+//Function to return the level order traversal line by line of a tree.
+vector<vector<int>> levelOrder(Node* node)
+{
+    vector<vector<int>>ans;
+    if(node==NULL)
+    {
+        return ans;
+    }
+    queue<Node*>q;
+    q.push(node);
+    while(!q.empty())
+    {
+        int size=q.size();
+        vector<int>v1;
+        for(int i=0;i<size;i++)
+        {
+            Node*temp=q.front();
+            q.pop();
+            v1.push_back(temp->data);
+            if(temp->left)
+            {
+                q.push(temp->left);
+            }
+            
+            if(temp->right)
+            {
+                q.push(temp->right);
+            }
+        }
+        ans.push_back(v1);
+    }
+    return ans;
+  //Your code here
+}
