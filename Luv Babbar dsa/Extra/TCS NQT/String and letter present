@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string Str;
+    cin >> Str;
+    int N = Str.length();
+    char ch;
+    cin  >> ch;
+    char a, b;
+
+    a = Str[0];
+    b = Str[N - 1];
+    if (N < 2)
+    {
+        cout << "-1" << endl;
+    }
+
+    else if (a == b)
+    {
+        for (int i = 0; i < N; i++)
+        {
+            if (Str[i] == ch)
+            {
+                cout << i + 1 << endl;
+                break;
+            }
+        }
+    }
+    else
+    {
+        cout << "0" << endl;
+    }
+}
