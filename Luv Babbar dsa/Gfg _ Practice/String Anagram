@@ -1,0 +1,31 @@
+class Solution
+{
+    public:
+    //Function is to check whether two strings are anagram of each other or not.
+    // use of unordered map 
+    bool isAnagram(string a, string b)
+    {
+        // base case 
+        if(a.length()!=b.length())
+        {
+            return false;
+        }
+        
+        unordered_map<char,int>mp;
+        for(int i=0;i<a.size();i++)
+        {
+            mp[a[i]]++;
+            mp[b[i]]--;
+        }
+        
+        for(auto x:mp)
+        {
+             if(x.second!=0)
+             {
+                 return false;
+             }
+        }
+        return true;
+        // Your code here
+    }
+};
