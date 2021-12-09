@@ -1,0 +1,22 @@
+class Solution{
+    public:
+    
+    void postorder(Node*node,vector<int>&v)
+    {
+        if(node==NULL)
+        {
+            return;
+        }
+        postorder(node->left,v);
+        postorder(node->right,v);
+        v.push_back(node->data);
+    }
+    
+    vector<int> postOrder(Node* node) 
+    {
+        vector<int>v;
+        postorder(node,v);
+        return v;
+      // code here
+    }
+};
