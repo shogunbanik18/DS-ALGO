@@ -60,3 +60,64 @@ int main()
     }
     return 0;
 }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// palindrome string 
+// Recursive way 
+bool ispalindrome_recursive(string s,int l,int r)
+{
+    // base case 
+    if(l>=r)
+    {
+        return true;
+    }
+    
+    if(s[l]!=s[r])
+    {
+        return false;
+    }
+    
+    return ispalindrome_recursive(s,l+1,r-1);
+}
+
+// iterative way 
+bool ispalindrome(string s)
+{
+    int n=s.size();
+    int l=0;
+    int r=n-1;
+    while(l<=r)
+    {
+        if(s[l]!=s[r])
+        {
+            return false;
+        }
+        l++;
+        r--;
+    }
+    return true;
+}
+
+
+int main()
+{
+    // string s;
+    // cin>>s;
+    // if(ispalindrome(s))
+    // {
+    //     cout<<"Yes"<<endl;
+    // }
+    // else
+    // {
+    //     cout<<"NO"<<endl;
+    // }
+    string s ="abba";
+    int r=s.size();
+    cout<< ispalindrome_recursive(s,0,r);
+    return 0;
+}
