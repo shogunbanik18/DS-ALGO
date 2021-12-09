@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// using loop 
+int factorialusingloop(int n)
+{
+    int fact=1;
+    for(int i=n;i>=1;i--)
+    {
+        fact=fact*i;
+    }
+    return fact;
+}
+
+// recursive approach for factorial 
+int factorial(int n)
+{
+    if(n==0 or n==1)
+    {
+        return 1;
+    }
+    return factorial(n-1)*n;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    // cout<<factorial(n)<<endl;
+    cout<<factorialusingloop(n)<<endl;
+    return 0;
+}
