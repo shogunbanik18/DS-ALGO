@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void oddly_even(vector<int>&v)
+{
+    int sume=0;
+    int sumo=0;
+    int ans;
+    for(int i=0;i<v.size();i++)
+    {
+        if(i%2==0)
+        {
+            sume=sume+v[i];
+        }
+        else
+        {
+            sumo=sumo+v[i];
+        }
+    }
+    
+    if(sume>=sumo)
+    {
+        ans=sume-sumo;
+        cout<<ans<<" ";
+    }
+    else
+    {
+        ans=sumo-sume;
+        cout<<ans<<" ";
+    }
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int>v;
+    while(n!=0)
+    {
+        int r=n%10;
+        v.push_back(r);
+        n=n/10;
+    }
+    
+    reverse(v.begin(),v.end());
+    oddly_even(v);
+    return 0;
+}
