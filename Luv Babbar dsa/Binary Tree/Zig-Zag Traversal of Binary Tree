@@ -1,0 +1,60 @@
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution{
+    public:
+    //Function to store the zig zag order traversal of tree in a list.
+    vector <int> zigZagTraversal(Node* root)
+    {
+        // just kinda level order traversal with some flags
+        vector<int>ans;
+        queue<Node*>q;
+        q.push(root);
+        int flag=1;
+        
+        while(!q.empty())
+        {
+            vector<int>v;
+            int size=q.size();
+            for(int i=0;i<size;i++)
+            {
+                Node*curr=q.front();
+                q.pop();
+                v.push_back(curr->data);
+                
+                if(curr->left)
+                {
+                    q.push(curr->left);
+                }
+                
+                if(curr->right)
+                {
+                    q.push(curr->right);
+                }
+            }
+            
+            if(flag%2==0)
+            {
+                reverse(v.begin(),v.end());
+            }
+            
+            for(int i=0;i<v.size();i++)
+            {
+                ans.push_back(v[i]);
+            }
+            flag=!flag;
+        }
+        
+        return ans;
+    	// Code here
+    }
+};
