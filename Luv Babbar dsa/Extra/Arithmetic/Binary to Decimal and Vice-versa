@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// decimal to binary
+int dec2b(int a)
+{
+    int r,sum=0;
+    int i=1;
+    while(a>0)
+    {
+        r=a%2;
+        sum=sum+r*i;
+        i=i*10;
+        a=a/2;
+    }
+    return sum;
+}
+
+// Binary to decimal 
+int binarytodecimal(int n)
+{
+    int sum=0;
+    int i=1;
+    while(n>0)
+    {
+        int r=n%10;
+        sum =sum+r*i;
+        i=i*2;
+        n=n/10;
+    }
+    return sum;
+}
+
+int main()
+{
+    int n=1011;
+    cout<<binarytodecimal(n)<<endl;
+    int a=binarytodecimal(n);
+    cout<<dec2b(a)<<endl;;
+    return 0;
+}
