@@ -1,43 +1,106 @@
-class Solution
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// tc: O(n^n!)
+// Use of Recursion 
+// void permute(string s,int l,int r)
+// {
+//     if(l==r)
+//     {
+//         cout<<s<<" ";
+//         return;
+//     }
+    
+//     for(int i=l;i<=r;i++)
+//     {
+//         s=swap(s,l,i);
+//         permute(s,l+1,r);
+//         // backtracking step 
+//         s=swap(s,l,i);
+//     }
+// }
+
+// int main()
+// {
+//     string s;
+//     cin>>s;
+//     int l=0;
+//     int r=s.size()-1;
+//     permute(s,0,r);
+//     return 0;
+// }
+
+
+// Aproach 2 
+
+// in case of arrays 
+vector<vector<int>>ans;
+
+// pass by reference 
+// tc :o(n!)
+void permute(vector<int>&a,int idx)
 {
-	public:
-	
-        void find(string s,int i,vector<string> &ans)
-        {
-            if(i==s.size())
-            {
-                ans.push_back(s);
-                return;
-            }
-            
-            for(int k=i;k<s.size();k++)
-            {
-                swap(s[i],s[k]);
-                find(s,i+1,ans);
-                swap(s[i],s[k]);
-            }
-        }
-	
-	
-		vector<string>find_permutation(string s)
-		{
-		    // Code here there
-		    vector<string>ans;
-		    find(s,0,ans);
-		    sort(ans.begin(),ans.end());
-		    return ans;
-		}
-		
-		
-		// using stl trick //
-		    vector<string>find_permutation(string S)
- {
-    vector<string> ans;
-    sort(S.begin(),S.end());
-    ans.push_back(S);
-    while(next_permutation(S.begin(),S.end())){
-        ans.push_back(S);
+    if(idx==a.size())
+    {
+        ans.push_back(a);
+        return;
     }
-    return ans;
- }
-};
+    for(int i=idx;i<a.size();i++)
+    {
+        swap(a[i],a[idx]);
+        permute(a,idx+1);
+        swap(a[i],a[idx]);
+    }
+    return ;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int>a(n);
+    for(auto &i:a)
+    {
+        cin>>i;
+    }
+    permute(a,0);
+    for(auto v:ans)
+    {
+        for(auto i:v)
+        {
+            cout<<i<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+
+// using stl trick 
+// tc :o(n!)
+// int main()
+// {
+//     int n;
+//     cin>>n;
+//     vector<int>a(n);
+//     for(auto &i:a)
+//     {
+//         cin>>i;
+//     }
+//     sort(a.begin(),a.end());
+//     do
+//     {
+//         ans.push_back(a);
+//     }while(next_permutation(a.begin(),a.end()));
+    
+//     for(auto v:ans)
+//     {
+//         for(auto i:v)
+//         {
+//             cout<<i<<" ";
+//         }
+//         cout<<endl;
+//     }
+// }
+
+
