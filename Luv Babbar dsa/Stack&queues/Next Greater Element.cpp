@@ -1,34 +1,34 @@
-lass Solution
+// gfg 
+class Solution
 {
     public:
     //Function to find the next greater element for each element of the array.
+    // using stack 
+    // TC: O(N)
+    // SC:O(N)
     vector<long long> nextLargerElement(vector<long long> arr, int n)
     {
-        vector<long long> v;
-        stack<long long>s;
-        s.push(arr[n-1]);
-        v.push_back(-1);
-        
-        for(int i=n-2;i>=0;i--)
+        stack<long long>st;
+        vector<long long>v;
+        for(int i=n-1;i>=0;i--)
         {
-            while(!s.empty() and s.top()<=arr[i])
+            while(!st.empty() and st.top()<=arr[i])
             {
-                s.pop();
+                st.pop();
             }
             
-            if(s.empty()==true)
+            if(st.empty())
             {
-                s.push(arr[i]);
                 v.push_back(-1);
             }
+            
             else
             {
-                v.push_back(s.top());
-                s.push(arr[i]);
+                v.push_back(st.top());
             }
+            st.push(arr[i]);
         }
         reverse(v.begin(),v.end());
         return v;
-        // Your code here
     }
-};
+}; 
