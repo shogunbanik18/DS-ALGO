@@ -30,3 +30,26 @@ public:
 // reverse(s.begin(),s.end());   
     }
 };
+
+
+// using recursion 
+#include<bits/stdc++.h>
+using namespace std;
+
+void reverse1(string s)
+{
+    if(s.length()==0)
+    {
+        return;
+    }
+    
+    string ros=s.substr(1);
+    reverse1(ros);
+    cout<<s[0];
+}
+
+int main()
+{
+    reverse1("binod");
+    return 0;
+}
