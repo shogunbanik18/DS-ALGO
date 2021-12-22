@@ -62,3 +62,55 @@ int main()
     findRedundant(s3);
     return 0;
 }
+
+
+
+// alter 
+
+bool checkredun(string &str)
+{
+    stack<char>st;
+    bool ans=false;
+    for(int i=0;i<str.size();i++)
+    {
+       if(str[i]=='+' or str[i]=='-' or str[i]=='*' or str[i]=='/')
+       {
+           st.push(str[i]);
+       }
+       else if(str[i]=='(')
+       {
+           st.push(str[i]);
+       }
+       
+       else if(str[i]==')')
+       {
+           if(st.top()=='(')
+           {
+               ans=true;
+           }
+           while(st.top()=='+' or st.top()=='-' or st.top()=='*' or st.top()=='/')
+           {
+               st.pop();
+           }
+           st.pop();
+       }
+    }
+    cout<<ans<<endl;
+}
+
+int main()
+{
+    string s1="((a+b))";
+    // findRedundant(s1);
+    checkredun(s1);
+    
+    string s2 = "(a+(b)/c)";
+    // findRedundant(s2);
+    checkredun(s2);
+    
+    string s3 = "(a+b*(c-d))";
+    // findRedundant(s3);
+    checkredun(s3);
+    
+    return 0;
+}
