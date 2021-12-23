@@ -31,6 +31,22 @@ void bubblesort(vector<int>&box)
     }
 }
 
+// void bubblesort(vector<int>&box)
+// {
+//     int n=box.size();
+//   for(int i=0;i<n;i++)
+//     {
+//         for(int j=i+1;j<n;j++)
+//         {
+//             if(box[i]>box[j])
+//             {
+//                 swap(box,i,j);
+//             }
+//         }
+//     }
+// }
+
+
 int main()
 {
     int n=7;
