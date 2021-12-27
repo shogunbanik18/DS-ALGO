@@ -22,3 +22,29 @@ class Solution{
         // your code here
     }
 };
+
+
+// Leetcode 
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs)
+    {
+        string ans="";
+        int n=strs.size();
+        sort(strs.begin(),strs.end());
+        for(int i=0;i<strs[0].length();i++)
+        {
+            string x=strs[0];
+            string y=strs[n-1];
+            if(x[i]==y[i])
+            {
+                ans=ans+x[i];
+            }
+            else
+            {
+                break;
+            }
+        }
+        return ans;
+    }
+};
