@@ -39,3 +39,41 @@ int main()
     median(arr1, arr2);
     return 0;
 }
+
+
+Leetcode
+class Solution {
+public:
+    // tc: O(N)+o(M)+O((N+M)log(N+M))
+//     i.e : O((N+M))log(N+M))
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
+    {
+       vector<int>res;
+        for(int i=0;i<nums1.size();i++)
+        {
+            res.push_back(nums1[i]);
+        }
+        
+        for(int i=0;i<nums2.size();i++)
+        {
+            res.push_back(nums2[i]);
+        }
+        
+        sort(res.begin(),res.end());
+        int n=res.size();
+        double mid;
+        if(n%2==0)
+        {
+            int mid1=(0+(n-1))/2;
+            int mid2=mid1+1;
+            mid= (res[mid1]+res[mid2]);
+            mid=mid/2;
+        }
+        else if(n%2!=0)
+        {
+            int mid1=(0+(n-1))/2;
+            mid =res[mid1];
+        }
+        return mid;
+    }
+};
