@@ -1,10 +1,3 @@
-//User function template for C++
-
-/* matrix : given input matrix, you are require 
- to change it in place without using extra space */
-// tc: o(N^2)
-// SC: O(1)
-
 void swap1(vector<vector<int>>&matrix,int i,int j)
 {
     int temp=matrix[i][j];
@@ -24,6 +17,16 @@ void rotate(vector<vector<int> >& matrix)
         }
     }
     // reversing after transpose 
-    reverse(matrix.begin(),matrix.end());
+    // reverse(matrix.begin(),matrix.end());
+     for (int i = 0; i < n; i++)
+    {
+        int low = 0, high = n - 1;
+        while (low < high)
+        {
+            swap(matrix[low][i], matrix[high][i]);
+            low++;
+            high--;
+        }
+    }
     // Your code goes here
 }
