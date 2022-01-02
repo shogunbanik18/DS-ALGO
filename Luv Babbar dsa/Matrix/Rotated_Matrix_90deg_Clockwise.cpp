@@ -91,3 +91,35 @@ void rotate(vector<vector<int>>& matrix) {
       
 }
 
+// leetcode 
+
+class Solution {
+public:
+    void swap1(vector<vector<int>>&matrix,int i,int j)
+    {
+        int temp=matrix[i][j];
+        matrix[i][j]=matrix[j][i];
+        matrix[j][i]=temp;
+    }
+    
+    void rotate(vector<vector<int>>& matrix)
+    {
+        // taking the transpose
+        int n=matrix.size();
+        int m=matrix[0].size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i;j<m;j++)
+            {
+                swap1(matrix,i,j);
+                // swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        
+        // reversing the indiviual row
+        for(int i=0;i<n;i++)
+        {
+            reverse(matrix[i].begin(),matrix[i].end());
+        }
+    }
+};
