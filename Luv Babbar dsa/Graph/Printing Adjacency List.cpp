@@ -8,13 +8,12 @@ class Solution {
         {
             vector<int>temp;
             temp.push_back(i);
-            for(auto x:adj[i])
+            for(int x:adj[i])
             {
                 temp.push_back(x);
-                res.push_back(temp);
             }
+            res.push_back(temp);
         }
         return res;
-        // Code here
     }
 };
