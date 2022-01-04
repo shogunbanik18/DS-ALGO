@@ -1,4 +1,8 @@
 // Shortestpath_in_direted_graph.cpp (DAG)
+Weighted Graph 
+// tc: O(N+E)*2
+// SC:O(2*N)
+// AUX :
 #include<bits/stdc++.h>
 using namespace std;
 
