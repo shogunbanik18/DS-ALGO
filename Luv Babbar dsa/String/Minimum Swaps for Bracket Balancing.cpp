@@ -2,24 +2,28 @@ class Solution{
 public:
     int minimumNumberOfSwaps(string S)
     {
-        int count=0;
-        int sum=0;
-        for(int i=0;i<S.size();i++)
+        int n=S.length();
+        int open=0;
+        int close=0;
+        int fault=0;
+        int ans=0;
+        for(int i=0;i<n;i++)
         {
             if(S[i]==']')
             {
-                count=count+1;
+                close++;
+                fault =close-open;
             }
             else
             {
-                if(count>0)
+                open++;
+                if(fault>0)
                 {
-                    sum=sum+count;
+                    ans+=fault;
+                    fault--;
                 }
-                count=count-1;
             }
         }
-        return sum;
-        // code here 
+        return ans;
     }
 };
