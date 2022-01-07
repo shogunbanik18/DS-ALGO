@@ -1,2 +1,2 @@
-# DS-ALGO 450-Questions 🔥🔥
+# DS-ALGO Questions 🔥🔥
 In Progress
