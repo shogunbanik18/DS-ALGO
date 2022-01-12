@@ -10,6 +10,34 @@
 //       Generate all possible permutaition in lexicographically sorted order and store it in vector ds 
 //           Then travel through the ds and find the given sequence and return the next sequence 
 
+        //     Printing Purmutation of string 
+        // class Solution
+        // {
+        // 	public:
+        // 	    void recur(string s,int index,int n,vector<string>&ans)
+        // 	    {
+        // 	        if(index==n)
+        // 	        {
+        // 	            ans.push_back(s);
+        // 	            return;
+        // 	        }
+        // 	        for(int i=index;i<n;i++)
+        // 	        {
+        // 	            swap(s[index],s[i]);
+        // 	            recur(s,index+1,n,ans);
+        // 	            swap(s[index],s[i]);
+        // 	        }
+        // 	    }
+
+        // 		vector<string>find_permutation(string S)
+        // 		{
+        // 		    vector<string>ans;
+        // 		    recur(S,0,S.size(),ans);
+        // 		    sort(ans.begin(),ans.end());
+        // 		    return ans;
+        // 		}
+        // };
+
     Using C++ Stl 
      void nextPermutation(vector<int>& nums) 
      {
