@@ -20,25 +20,44 @@ int main()
     return 0;
 }
 
-// class Solution{
-//     public:
-//     // Function to check if given number n is a power of two.
-//     bool isPowerofTwo(long long n)
-//     {
-//         if(n<=0)
-//         {
-//             return false;
-//         }
-//     //   return (!(n&(n-1)));
-//         if((n&(n-1))==0)
-//         {
-//             return true;
-//         }
-//         else
-//         {
-//             return false;
-//         }
-//         // Your code here    
+// leetcode 
+
+class Solution {
+public:
+    // using loop
+     bool isPowerOfTwo(int n)
+     {
+         if(n>0)
+         {
+             while(n%2==0)
+             {
+                 n=n/2; 
+             }
+             if(n==1)
+             {
+                 return true;
+             }
+         }
+          return false;
+        }
+    
+    // using bitmasking 
+//     tc:O(lon n)
+    bool isPowerOfTwo(int n) 
+    {
+        // base case 
+        if(n==0 or n<0)
+        {
+            return false;
+        }
         
-//     }
+        if((n&(n-1))==0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;   
+        }
+    }
 };
