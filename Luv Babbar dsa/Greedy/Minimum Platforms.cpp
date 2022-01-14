@@ -2,6 +2,8 @@ class Solution{
     public:
     //Function to find the minimum number of platforms required at the
     //railway station such that no train waits.
+//     tc:O(nlogn *2) +o(2n)
+//     sc: o(1)
     int findPlatform(int arr[], int dep[], int n)
     {
         // using greedy approach 
