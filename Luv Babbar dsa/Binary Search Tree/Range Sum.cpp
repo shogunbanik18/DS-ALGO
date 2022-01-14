@@ -11,8 +11,7 @@
  */
 class Solution {
 public:
-    int sumofRange;
-  
+     int sumofRange;
     void dfs(TreeNode* root, int low, int high)
     {
         // base case 
@@ -25,16 +24,9 @@ public:
         {
             sumofRange+=root->val;
         }
-        if(root->val>low)
-        {
-            dfs(root->left,low,high);
-        }
-        if(root->val<high)
-        {
-            dfs(root->right,low,high);
-        }
+        dfs(root->left,low,high);
+        dfs(root->right,low,high);
     }
-    
     int rangeSumBST(TreeNode* root, int low, int high) 
     {
         
