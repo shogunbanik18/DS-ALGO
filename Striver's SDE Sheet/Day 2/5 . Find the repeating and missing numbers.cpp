@@ -117,3 +117,45 @@ int main()
         cout<<x<<" ";
     }
 }
+
+
+
+// gfg 
+// using hashing 
+class Solution{
+public:
+    // using basic hashing method 
+    int*findTwoElement(int *arr, int n)
+    {
+        int *a=new int[2];
+        vector<int>ans;
+        vector<int>subs(n+1,0);
+        for(int i=0;i<n;i++)
+        {
+            subs[arr[i]]++;
+        }
+        
+        for(int i=1;i<=n;i++)
+        {
+            if(subs[i]>1 )
+            {
+                ans.push_back(i);
+            }
+        }
+        
+        for(int i=1;i<=n;i++)
+        {
+            if(subs[i]==0)
+            {
+                ans.push_back(i);
+            }
+        }
+        
+        for(int i=0;i<ans.size();i++)
+        {
+            a[i]=ans[i];
+        }
+        return a;
+        // code here
+    }
+};
