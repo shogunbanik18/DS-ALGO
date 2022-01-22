@@ -159,3 +159,23 @@ public:
         // code here
     }
 };
+// gfg maths 
+  int*findTwoElement(int *arr, long long n)
+    {
+        int *a=new int[2];
+        long long s=n*(n+1)/2;
+        long long p=(n*(n+1)*(2*n+1))/6;
+        
+        for(int i=0;i<n;i++)
+        {
+            s-=arr[i];
+            p-=arr[i]*arr[i];
+        }
+        
+        int missing =(s+p/s)/2;
+        int repeating= missing-s;
+        a[0]=repeating;
+        a[1]=missing;
+        return a;
+        // code here
+    }
