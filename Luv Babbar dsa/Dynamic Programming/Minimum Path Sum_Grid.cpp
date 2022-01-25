@@ -106,6 +106,8 @@ public:
     }
     
     // space optimisation
+    // tc:O(n*m)
+    // sc:O(1)
     int minPathSum(vector<vector<int>>& grid) 
     {
         int n=grid.size();
@@ -113,12 +115,12 @@ public:
         vector<int>prev(m,0);
         for(int i=0;i<n;i++)
         {
-            vector<int>curr(m,0);
+            vector<int>temp(m,0);
             for(int j=0;j<m;j++)
             {
                 if(i==0 and j==0)
                 {
-                    curr[j]=grid[i][j];
+                    temp[j]=grid[i][j];
                 }
                 else
                 {
@@ -135,18 +137,62 @@ public:
                     int left=grid[i][j];
                     if(j>0)
                     {
-                        left+=curr[j-1];
+                        left+=temp[j-1];
                     }
                     else
                     {
                         left+=1e9;
-                    }
-                    
-                    curr[j]=min(up,left);
-                }
+                    }                    
+                    temp[j]=min(up,left);
+                } 
             }
-            prev=curr;
+            prev=temp;
         }
         return prev[m-1];
     }
+    
+    // space optimisation
+//     int minPathSum(vector<vector<int>>& grid) 
+//     {
+//         int n=grid.size();
+//         int m=grid[0].size();
+//         vector<int>prev(m,0);
+//         for(int i=0;i<n;i++)
+//         {
+//             vector<int>curr(m,0);
+//             for(int j=0;j<m;j++)
+//             {
+//                 if(i==0 and j==0)
+//                 {
+//                     curr[j]=grid[i][j];
+//                 }
+//                 else
+//                 {
+//                     int up=grid[i][j];
+//                     if(i>0)
+//                     {
+//                         up+=prev[j];
+//                     }
+//                     else
+//                     {
+//                         up+=1e9;
+//                     }
+                    
+//                     int left=grid[i][j];
+//                     if(j>0)
+//                     {
+//                         left+=curr[j-1];
+//                     }
+//                     else
+//                     {
+//                         left+=1e9;
+//                     }
+                    
+//                     curr[j]=min(up,left);
+//                 }
+//             }
+//             prev=curr;
+//         }
+//         return prev[m-1];
+//     }
 };
