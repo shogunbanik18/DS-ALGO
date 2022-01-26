@@ -10,8 +10,11 @@
  */
 class Solution {
 public:
+
     
-    // using counting method 
+    // using counting method
+    // tc:o(n)+o(n/2)
+    // sc:o(1)
     ListNode* middleNode(ListNode* head) 
     {
         if(head==NULL)
@@ -27,10 +30,31 @@ public:
             curr=curr->next;
         }
         int mid=(count/2)+1;
-        for(int i=0;i<mid-1;i++)
+        for(int i=1;i<=mid-1;i++)
         {
             temp=temp->next;
         }
         return temp;
+    }
+    
+    // optimised approach 
+    // using hare tortoise method 
+    // tc:o(n/2)
+    // sc:o(1)
+    ListNode* middleNode(ListNode* head) 
+    {
+        // base case 
+        if(head==NULL)
+        {
+            return NULL;
+        }
+        ListNode*slow=head;
+        ListNode*fast=head;
+        while(fast!=NULL and fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
     }
 };
