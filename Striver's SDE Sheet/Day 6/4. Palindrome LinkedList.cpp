@@ -35,42 +35,48 @@ public:
         return true;
     }
     
-  
-//#####   Not Working ####
     // 2nd brute force 
     // tc:o(n)
     // sc:o(n)
-//     ListNode* reverse(ListNode*head)
-//     {
-//         ListNode*curr=head;
-//         ListNode*prev=NULL;
-//         ListNode*temp;
-//         while(curr!=NULL)
-//         {
-//             temp=curr->next;
-//             curr->next=prev;
-//             prev=curr;
-//             curr=temp;
-//         }
-//         return prev;
-//     }
+    ListNode* reverse(ListNode*head)
+    {
+        ListNode*curr=head;
+        ListNode*prev=NULL;
+        ListNode*temp;
+        while(curr!=NULL)
+        {
+            temp=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=temp;
+        }
+        return prev;
+    }
     
-//     bool isPalindrome(ListNode* head) 
-//     {
-//         ListNode*curr1=head;
-//         ListNode*curr2=reverse(head);
-//         while(curr1!=NULL and curr2!=NULL)
-//         {
-//             if(curr1->val!=curr2->val)
-//             {
-//                 return false;
-//             }
-//             curr1=curr1->next;
-//             curr2=curr2->next;
-//         }
-//         return true;
-//     }
-    
+    bool isPalindrome(ListNode* head) 
+    {
+        ListNode*curr1=head;
+        ListNode*dummy=new ListNode(0);
+        ListNode*newhead=dummy;
+        ListNode*temp=head;
+        while(temp!=NULL)
+        {
+            dummy->next= new ListNode(temp->val);
+            dummy=dummy->next;
+            temp=temp->next;
+        }
+        ListNode*curr2=reverse(newhead->next);
+        while(curr1!=NULL and curr2!=NULL)
+        {
+            if(curr1->val!=curr2->val)
+            {
+                return false;
+            }
+            curr1=curr1->next;
+            curr2=curr2->next;
+        }
+        return true;
+    }
     
     // optimised code 
     // tc:o(n/2)+o(n/2)+o(n/2)+o(n/2)+o(n/2)
