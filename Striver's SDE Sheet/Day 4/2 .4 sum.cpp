@@ -104,3 +104,72 @@ public:
         return res;
     }
 };
+
+
+// / using the most optimised approach 
+    // tc:o(nlogn)+o(n*n)
+    // sc:o(m)*4
+class Solution {
+public:
+    /
+    vector<vector<int>> fourSum(vector<int>& nums, int target)
+    {
+        vector<vector<int>>ans;
+        if(nums.empty())
+        {
+            return ans;
+        }
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        
+        for(int i=0;i<n;i++)
+        {
+            int target3=target-nums[i];
+            for(int j=i+1;j<n;j++)
+            {
+                int target2=target3-nums[j];
+                int low=j+1;
+                int high=n-1;
+                while(low<high)
+                {
+                    int twosum=nums[low]+nums[high];
+                    if(twosum<target2)
+                    {
+                        low++;
+                    }
+                    else if(twosum>target2)
+                    {
+                        high--;
+                    }
+                    else
+                    {
+                        vector<int>temp(4,0);
+                        temp[0]=nums[i];
+                        temp[1]=nums[j];
+                        temp[2]=nums[low];
+                        temp[3]=nums[high];
+                        ans.push_back(temp);
+                        // jumping over duplicates 
+                        while(low<high and nums[low]==temp[2])
+                        {
+                            low++;
+                        }
+                        while(low<high and nums[high]==temp[3])
+                        {
+                            high--;
+                        }
+                    }
+                }
+                while(j+1<n and nums[j+1]==nums[j])
+                {
+                    j++;
+                }
+            }
+             while(i+1<n and nums[i+1]==nums[i])
+                {
+                    i++;
+                }
+        }
+        return ans;
+    }
+};
