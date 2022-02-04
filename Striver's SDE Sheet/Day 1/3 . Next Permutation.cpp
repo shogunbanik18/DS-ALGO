@@ -82,3 +82,53 @@
         }
     }
 };
+
+
+
+// Revision 
+class Solution {
+public:
+    // using the most optimised appraoch 
+    // using back-peak traversal algorithm 
+    // intuition behind algorithm 
+    // traverse from back find an element a[i]<a[i+1]
+        // if(element <0) reverse all 
+    // else traverse from back again and find a[l]>a[k]
+    // swap them and reverse from k+1
+    // resaon find the peak 
+    // void nextPermutation(vector<int>& nums)
+    // {
+    //     int n=nums.size();
+    //     int k,l;
+    //     for(k=n-2;k>=0;k--)
+    //     {
+    //         if(nums[k]<nums[k+1])
+    //         {
+    //             break;
+    //         }
+    //     }
+    //     if(k<0)
+    //     {
+    //         reverse(nums.begin(),nums.end());
+    //     }
+    //     else
+    //     {
+    //         for(l=n-1;l>k;l--)
+    //         {
+    //             if(nums[l]>nums[k])
+    //             {
+    //                 break;
+    //             }
+    //         }
+    //         swap(nums[k],nums[l]);
+    //         reverse(nums.begin()+k+1,nums.end());
+    //     }
+    // }
+    
+    // using c++ stl 
+    // void nextPermutation(vector<int>& nums)
+    // {
+    //     int n=nums.size();
+    //     next_permutation(nums.begin(),nums.end());
+    // }
+};
