@@ -1,39 +1,38 @@
-class Solution{
-    public:
     //Function to find the minimum number of platforms required at the
     //railway station such that no train waits.
-//     tc:O(nlogn *2) +o(2n)
-//     sc: o(1)
+    
+    // using sorting +2 pointer approach 
+    // tc: o(2*nlogn)+o(n)
+    // sc:o(1)
+class Solution{
+    public:
     int findPlatform(int arr[], int dep[], int n)
     {
-        // using greedy approach 
-        
-        // sorting +two pointer approach 
         sort(arr,arr+n);
         sort(dep,dep+n);
         
+        int count=1;
         int platform=1;
-        int result=1;
-        int i=1,j=0;
-        
+        int i=1;
+        int j=0;
         while(i<n and j<n)
         {
-            if(arr[i]<=dep[j])
+            if(dep[j]>=arr[i])
             {
-                platform++;
+                count++;
                 i++;
             }
-            else if(arr[i]>dep[j])
+            else if(dep[j]<arr[i])
             {
-                platform--;
+                count--;
                 j++;
             }
-            if(platform>result)
+            
+            if(count>platform)
             {
-                result=platform;
+                platform=count;
             }
         }
-        return result;
-    	// Your code here
+        return platform;
     }
 };
