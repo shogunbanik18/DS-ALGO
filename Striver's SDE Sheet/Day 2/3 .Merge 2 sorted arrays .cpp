@@ -2,7 +2,7 @@ class Solution {
 public:
         // Brute Force  
         // using extra space 
-    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
+        void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
     {
         vector<int>v;
         for(int i=0;i<m;i++)
@@ -20,6 +20,11 @@ public:
         for(int i=0;i<v.size();i++)
         {
             nums1[i]=v[i];
+        }
+        int k=0;
+        for(int i=n+1;i<v.size();i++)
+        {
+            nums2[k]=v[i];
         }
     }
     
