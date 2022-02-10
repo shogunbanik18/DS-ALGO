@@ -121,3 +121,40 @@ int findWays(vector<int> &num, int tar)
     }
     return prev[tar];
 }
+
+// Special case 
+// 0=<nums[i]<=n
+// for test case  : {0 , 0 , 1}
+// ans should be 4 but here ans is 1 
+int f(int ind,int sum,vector<int>&num,vector<vector<int>>&dp)
+{
+    if(ind==0)
+    {
+        if(sum==0 and num[ind]==0)
+        {
+            return 2;
+        }
+        if(sum==0 or num[ind]==sum)
+        {
+            return 1;
+        }
+        return 0;
+    }
+    if(dp[ind][sum]!=-1)
+    {
+        return dp[ind][sum];
+    }
+    int nottake =f(ind-1,sum,num,dp);
+	int take=0;
+	if(num[ind]<=sum)
+	{
+	    take=f(ind-1,sum-num[ind],num,dp);
+	}
+	return dp[ind][sum]=take+nottake;
+}
+int findWays(vector<int> &num, int tar)
+{
+    int n=num.size();
+    vector<vector<int>>dp(n,vector<int>(tar+1,-1));
+    return f(n-1,tar,num,dp);
+}
