@@ -83,5 +83,96 @@ public:
         // }  
 };
 
-// optimised method gap method 
-// using (N*LogN)
+
+// gfg 
+class Solution{
+    public:
+        //Function to merge the arrays.
+        // using Brute force
+        // tc:o(nlogn)+o(n)+o(n)
+        // sc:o(n)
+        void merge(long long arr1[], long long arr2[], int n, int m)
+        {
+            vector<int>v;
+            for(int i=0;i<n;i++)
+            {
+                v.push_back(arr1[i]);
+            }
+            for(int i=0;i<m;i++)
+            {
+                v.push_back(arr2[i]);
+            }
+            sort(v.begin(),v.end());
+            int k=0;
+            for(int i=0;i<n;i++)
+            {
+                arr1[i]=v[k++];
+            }
+            for(int i=0;i<m;i++)
+            {
+                arr2[i]=v[k++];
+            }
+        }  
+        
+        // using 2 pointer + insertion sort 
+        // tc:o(n*m)
+        // sc:o(1)
+        void merge(long long arr1[], long long arr2[], int n, int m) 
+        { 
+            int i,k;
+            for(i=0;i<n;i++)
+            {
+                if(arr1[i]>arr2[0])
+                {
+                    swap(arr1[i],arr2[0]);
+                }
+                
+                int first=arr2[0];
+                // using insertion sort algorithm 
+                for(k=1;k<m and arr2[k]<first;k++)
+                {
+                    arr2[k-1]=arr2[k];
+                }
+                arr2[k-1]=first;
+            }
+            // code here 
+        }
+        
+        // using the gap method 
+        // tc:o(logn)
+        // sc:o(1)
+        void merge(long long arr1[], long long arr2[], int n, int m)
+        {
+            int gap =ceil((float)(n+m)/2);
+            while(gap>0)
+            {
+                int i=0;
+                int j=gap;
+                while(j<(n+m))
+                {
+                    if(j<n and arr1[i]>arr1[j])
+                    {
+                        swap(arr1[i],arr1[j]);
+                    }
+                    else if(j>=n and i<n and  arr1[i]>arr2[j-n])
+                    {
+                        swap(arr1[i],arr2[j-n]);
+                    }
+                    else if(j>=n and i>=n and arr2[i-n]>arr2[j-n])
+                    {
+                        swap(arr2[i-n],arr2[j-n]);
+                    }
+                    i++;
+                    j++;
+                }
+               if(gap==1)
+               {
+                   gap=0;
+               }
+               else
+               {
+                   gap=(ceil)((float)gap/2);
+               }
+            }
+        }
+};
