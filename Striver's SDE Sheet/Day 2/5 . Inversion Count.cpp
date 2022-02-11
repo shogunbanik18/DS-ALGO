@@ -87,70 +87,92 @@ int main()
 }
 
 
-// gfg 
+// gfg  
+
 class Solution{
   public:
     // arr[]: Input Array
     // N : Size of the Array arr[]
     // Function to count inversions in the array.
-    // using merge sort
     
-      long long int merge(long long arr[],long long  l,long long  m,long long  r)
-     {
-         long long  n1=m-l+1;
-         long long  n2=r-m;
-         long long left[n1],right[n2];
-         for(long long  i=0;i<n1;i++)
-         {
-             left[i]=arr[i+l];
-         }
-         for(long long  i=0;i<n2;i++)
-         {
-             right[i]=arr[m+1+i];
-         }
-         long long  i=0,j=0,k=l;
-         long long  res=0;
-         while(i<n1 && j<n2)
-         {
-             if(left[i]<=right[j])
-             {
-                 arr[k++]=left[i++];
-             }
-             else
-             {
-                 arr[k++]=right[j++];
-                 res=res+(n1-i);
-             }
-         }
-         while(i<n1)
-         {
-             arr[k++]=left[i++];
-         }
-         while(j<n2)
-         {
-             arr[k++]=right[j++];
-         }
-         return res;
-     }
+    // Brute force 
+    // tc:o(n*n)
+    // sc:o(1)
+    // long long int inversionCount(long long arr[], long long N)
+    // {
+    //   long long int count=0;
+    //   for(int i=0;i<N-1;i++)
+    //   {
+    //       for(int j=i+1;j<N;j++)
+    //       {
+    //           if(arr[i]>arr[j])
+    //           {
+    //               count++;
+    //           }
+    //       }
+    //   }
+    //   return count;
+    //     // Your Code Here
+    // }
     
-    long long int mergesort(long long arr[],long long  l,long long  r)
+    // tc:o(nlogn)
+    // sc:o(n) creating an extra array
+    // merging the array 
+    long long merge(long long arr[],long long temp[],long long low,long long mid,long long high)
     {
-        long long inv=0;
-        if(l<r)
+        long long inv_count=0;
+        long long i=low;
+        long long j=mid;
+        long long k=low;
+        
+        while((i<=mid-1) and (j<=high))
         {
-            long long mid=(l+r)/2;
-            inv+=mergesort(arr,l,mid);
-            inv+=mergesort(arr,mid+1,r);
-            inv+=merge(arr,l,mid,r);
+            if(arr[i]<=arr[j])
+            {
+                temp[k++]=arr[i++];
+            }
+            else
+            {
+                temp[k++]=arr[j++];
+                inv_count += (mid-i);
+            }
         }
-        return inv;
+        
+        while(i<=mid-1)
+        {
+            temp[k++]=arr[i++];
+        }
+        
+        while(j<=high)
+        {
+            temp[k++]=arr[j++];
+        }
+        
+        for(long long i=low;i<=high;i++)
+        {
+            arr[i]=temp[i];
+        }
+        return inv_count;
+    }
+    
+    // merge sort step 
+    long long mergesort(long long arr[],long long temp[],long long low ,long long  high)
+    {
+        long long mid,inv_count=0;
+        if(low<high)
+        {
+            mid =(low+high)/2;
+            inv_count+=mergesort(arr,temp,low,mid);
+            inv_count+=mergesort(arr,temp,mid+1,high);
+            inv_count+=merge(arr,temp,low,mid+1,high);
+        }
+        return inv_count;
     }
     
     long long int inversionCount(long long arr[], long long N)
     {
-        long long  l=0;
-        long long  r=N-1;
-        return mergesort(arr,l,r);
-        // Your Code Here
+        long long temp[N];
+        mergesort(arr,temp,0,N-1);
     }
 };
+
