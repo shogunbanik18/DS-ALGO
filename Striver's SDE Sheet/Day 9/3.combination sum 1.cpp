@@ -1,13 +1,12 @@
-// Leetcode 
 class Solution {
 public:
-    // tc:Generally exponential (2^t) *k
-    // sc: K* x
-    
-    void findcombination(int index,int target,vector<int>&arr,vector<vector<int>>&ans,vector<int>ds)
+    // using Recursion
+    // tc:o(2^t)*k  Generally Exponential 
+    // sc:k*x
+    void f(int ind,int target,vector<int>&arr,vector<int>&ds,vector<vector<int>>&ans)
     {
-        // base case 
-        if(index==arr.size())
+        int n=arr.size();
+        if(ind==n)
         {
             if(target==0)
             {
@@ -15,22 +14,21 @@ public:
             }
             return;
         }
-        
-        // recursive case 
-        if(arr[index]<=target)
+        // Edge Case 
+        if(arr[ind]<=target)
         {
-            ds.push_back(arr[index]);
-            findcombination(index,target-arr[index],arr,ans,ds);
+            ds.push_back(arr[ind]);
+            f(ind,target-arr[ind],arr,ds,ans);
             ds.pop_back();
         }
-        findcombination(index+1,target,arr,ans,ds);
+        f(ind+1,target,arr,ds,ans);
     }
     
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) 
     {
         vector<vector<int>>ans;
         vector<int>ds;
-        findcombination(0,target,candidates,ans,ds);
+        f(0,target,candidates,ds,ans);
         return ans;
     }
 };
