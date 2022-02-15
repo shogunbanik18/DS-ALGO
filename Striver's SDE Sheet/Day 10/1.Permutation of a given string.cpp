@@ -1,103 +1,59 @@
 class Solution {
 public:
-    // tc: N! *N
-    // sc: O(N)+O(N)
-    void recur(vector<int>&ds,vector<vector<int>>&ans,vector<int>&nums,vector<int>&freq)
+    // using Swapping +Recursion+ Backtracking 
+    // tc:o(n!*n)
+    // sc:o(n) only auxiliary stack space
+    void f(int ind,vector<int>&nums,vector<vector<int>>&ans)
     {
-        int n=nums.size();
-        if(ds.size()==n)
+        if(ind==nums.size())
         {
-            ans.push_back(ds);
+            ans.push_back(nums);
             return;
         }
-        
-        for(int i=0;i<n;i++)
+        for(int i=ind;i<nums.size();i++)
+        {
+            swap(nums[ind],nums[i]);
+            f(ind+1,nums,ans);
+            swap(nums[ind],nums[i]);
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums)
+    {
+        vector<vector<int>>ans;
+        vector<int>ds;
+        f(0,nums,ans);
+        return ans;
+    }
+    
+    
+    // using the intital recursion + frequency map appraoch
+    // tc: n!n
+    // sc:o(n)+o(n) for frequency array+o(n) for auxilary space
+    void f(vector<int>&ds,vector<int>&nums,vector<vector<int>>&ans,vector<int>&freq)
+    {
+        if(ds.size()==nums.size())
+        {
+            ans.push_back(ds);
+        }
+        for(int i=0;i<nums.size();i++)
         {
             if(!freq[i])
             {
                 ds.push_back(nums[i]);
                 freq[i]=1;
-                recur(ds,ans,nums,freq);
+                f(ds,nums,ans,freq);
                 freq[i]=0;
                 ds.pop_back();
             }
         }
     }
-    
     vector<vector<int>> permute(vector<int>& nums)
     {
         vector<vector<int>>ans;
         vector<int>ds;
         int n=nums.size();
         vector<int>freq(n,0);
-        recur(ds,ans,nums,freq);
+        f(ds,nums,ans,freq);
         return ans;
     }
 };
-
-// Optimized Approach 
-class Solution {
-public:
-    // tc: N! *N
-    // sc: O(N)+O(N)
-//     void recur(vector<int>&ds,vector<vector<int>>&ans,vector<int>&nums,vector<int>&freq)
-//     {
-//         int n=nums.size();
-//         if(ds.size()==n)
-//         {
-//             ans.push_back(ds);
-//             return;
-//         }
-        
-//         for(int i=0;i<n;i++)
-//         {
-//             if(!freq[i])
-//             {
-//                 ds.push_back(nums[i]);
-//                 freq[i]=1;
-//                 recur(ds,ans,nums,freq);
-//                 freq[i]=0;
-//                 ds.pop_back();
-//             }
-//         }
-//     }
-    
-//     vector<vector<int>> permute(vector<int>& nums)
-//     {
-//         vector<vector<int>>ans;
-//         vector<int>ds;
-//         int n=nums.size();
-//         vector<int>freq(n,0);
-//         recur(ds,ans,nums,freq);
-//         return ans;
-//     }
-    
-    // Optimized solution
-    // tc :N! *N
-    // sc: only auxiliary space 
-    // call stack
-     void recur(int index,vector<int>&nums,vector<vector<int>>&ans)
-     {
-         if(index==nums.size())
-         {
-             ans.push_back(nums);
-             return;
-         }
-         for(int i=index;i<nums.size();i++)
-         {
-            swap(nums[index],nums[i]);
-            recur(index+1,nums,ans);
-            swap(nums[index],nums[i]);
-         }
-     }
-     vector<vector<int>> permute(vector<int>& nums)
-     {
-         vector<vector<int>>ans;
-         recur(0,nums,ans);
-         return ans;
-     }
-};
-
-
-
-
