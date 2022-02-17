@@ -68,3 +68,7 @@ double findNthRootOfM(int n, int m)
     double ans =low;
     return ans;
 }
+
+
+// using power function 
+cout<<pow(m ,(double)1.0/(double)n);
