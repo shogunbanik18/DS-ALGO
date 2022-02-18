@@ -1,3 +1,27 @@
+// class Solution{   
+// public:
+
+//     // Brute force 
+//     // tc: o(n*n) + o(nlogn) +o(n/2);
+//     // sc: o(n)
+//     int median(vector<vector<int>> &matrix, int r, int c)
+//     {
+//       vector<int>v;
+//       for(int i =0;i<r;i++)
+//       {
+//           for(int j=0;j<c;j++)
+//           {
+//               v.push_back(matrix[i][j]);
+//           }
+//       }
+//       sort(v.begin(),v.end());
+//       int low =0;
+//       int high=v.size()-1;
+//       int mid = low+high/2;
+//       return v[mid];
+               
+//     }
+
 // tc: 32 * n *log2(m)
 // sc: o(1)
 class Solution{   
