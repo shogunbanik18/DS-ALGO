@@ -56,3 +56,6 @@ int main()
 	cout << res << endl;
 	// return res;
 }
+
+
+// https://leetcode.com/discuss/general-discussion/1302335/aggressive-cows-spoj-fully-explained-c#:~:text=We%20need%20to%20define%20a,from%20the%20last%2Dplaced%20cow.
