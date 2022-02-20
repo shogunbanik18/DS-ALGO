@@ -33,33 +33,44 @@ public:
         return ans;
     }
     
-    // most optimal solution 
-    // using hashset 
-    // tc:O(N)+O(N)+O(N)
+//     most optimal solution 
+    
+    
+//     Approach: We will first push all are elements in the HashSet. Then we will run a for loop and check for any number(x) 
+//         if it is the starting number of the consecutive sequence by checking if the HashSet contains (x-1) or not. If ‘x’ is the starting 
+//             number of the consecutive sequence we will keep searching for the numbers
+//         y = x+1, x+2, x+3, ….. And stop at the first ‘y’ which is not present in the HashSet. Using this 
+//                 we can calculate the length of the longest consecutive subsequence. 
+   
+     // using hashset 
+    // tc:o(n)+o(n)+o(n)
+    // sc:o(n)
      int longestConsecutive(vector<int>& nums)
-     {
-         set<int>hashSet;
-         for(auto num:nums)
-         {
-             hashSet.insert(num);
-         }
-         
-         int longeststreak=0;
-         for(int num:nums)
-         {
-             if(!hashSet.count(num-1))
-             {
-                 int currentnum=num;
-                 int currentstreak=1;
+     {    
+            int n=nums.size();
+            unordered_set<int>s;
+            for(auto a:nums)
+            {
+                s.insert(a);
+            }
 
-                 while(hashSet.count(currentnum+1))
-                 {
-                     currentnum+=1;
-                     currentstreak+=1;
-                 }
-                 longeststreak=max(longeststreak,currentstreak);
-             }
-         }
-         return longeststreak;
-     }    
+            int maxi=0;
+            for(auto x:nums)
+            {
+                if(!(s.find(x-1)!=s.end()))
+                {
+                    int currentnum=x;
+                    int currentstreak=1;
+
+                    while(s.find(currentnum+1)!=s.end())
+                    {
+                        currentnum+=1;
+                        currentstreak+=1;
+                    }
+                    maxi=max(maxi,currentstreak);
+                }
+            }
+            return maxi;
+     }
+    
 };
