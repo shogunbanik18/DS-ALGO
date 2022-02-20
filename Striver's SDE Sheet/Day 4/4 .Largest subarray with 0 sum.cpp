@@ -20,13 +20,17 @@ class Solution{
             }
         }
         return maxi;
-    }
-    
-    // tc: o(Nlogn)
-    // sc:O(N)
-    // hashing concept  
+    }  
+};
+
+
+class Solution{
+    public:
+    // tc:o(nlogn)
+    // sc:o(n)
+    // concept of prefix sum and hashing 
     int maxLen(vector<int>&A, int n)
-    {   
+    {
         unordered_map<int,int>mp;
         int maxi=0;
         int sum=0;
@@ -41,7 +45,7 @@ class Solution{
             {
                 if(mp.find(sum)!=mp.end())
                 {
-                    maxi=max(maxi,i-mp[sum]);
+                    maxi =max(maxi,i-mp[sum]);
                 }
                 else
                 {
