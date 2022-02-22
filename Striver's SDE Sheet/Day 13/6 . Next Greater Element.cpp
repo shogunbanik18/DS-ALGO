@@ -27,3 +27,42 @@ vector<int> nextGreater(vector<int> &arr, int n)
     }
 	return ans;
 }
+
+// Leetcode 
+class Solution {
+public:
+    // use of unordered map and stack 
+    // tc:o(n)+o(n)+o(nlogn)
+    // sc:o(n)
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) 
+    {
+        int n1=nums1.size();
+        int n2=nums2.size();
+        
+        unordered_map<int,int>mp;
+        stack<int>st;
+        for(int j=n2-1;j>=0;j--)
+        {
+            while(!st.empty() and nums2[j]>=st.top())
+            {
+                st.pop();
+            }
+            if(st.empty())
+            {
+                mp[nums2[j]]=-1;
+            }
+            else
+            {
+                mp[nums2[j]]=st.top();
+            }
+            st.push(nums2[j]);
+        }
+        
+        vector<int>ans;
+        for(auto x:nums1)
+        {
+            ans.push_back(mp[x]);
+        }
+        return ans;
+    }
+};
