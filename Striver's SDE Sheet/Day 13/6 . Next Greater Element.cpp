@@ -1,4 +1,7 @@
 #include<bits/stdc++.h>
+
+// tc:o(n) + o(n)
+// sc:o(n)
 vector<int> nextGreater(vector<int> &arr, int n) 
 {
     stack <int> st;
