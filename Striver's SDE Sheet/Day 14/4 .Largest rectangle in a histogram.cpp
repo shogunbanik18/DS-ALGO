@@ -82,18 +82,20 @@ public:
         return maxArea;
     }
     
+    // intuition is to make the stack increasing 
     // tc:o(n)+o(n)
     // sc:o(n)
-     int largestRectangleArea(vector<int>& histo)
+    int largestRectangleArea(vector<int>& histo)
     {
         int n=histo.size();
         stack<int>st;
-        int maxA=0;
+        int maxarea=0;
+        
         for(int i=0;i<=n;i++)
         {
             while(!st.empty() and (i==n or histo[st.top()]>=histo[i]))
             {
-                int height=histo[st.top()];
+                int height= histo[st.top()];
                 st.pop();
                 int width;
                 if(st.empty())
@@ -104,10 +106,10 @@ public:
                 {
                     width =i-st.top()-1;
                 }
-                maxA=max(maxA,width*height);
+                maxarea =max(maxarea, height*width);
             }
             st.push(i);
         }
-        return maxA;
-    }
+        return maxarea;
+    }   
 };
