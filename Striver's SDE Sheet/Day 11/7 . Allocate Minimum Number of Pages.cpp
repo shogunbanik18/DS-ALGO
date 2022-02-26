@@ -6,48 +6,45 @@ class Solution
     public:
     //Function to find minimum number of pages
     
-    // using binary search .
-    // tc : o(n)*log(n)
+    // using binary search 
+    // tc : o(logn)
     // sc:o(1)
-    bool ispossible(int *arr,int barrier,int n,int students)
+    bool ispossible(int *arr,int mid,int N,int B)
     {
-        int allocatedstud=1;
-        int pages=0;
-        for(int i=0;i<n;i++)
+        int count=0;
+        int sum=0;
+        for(int i=0;i<N;i++)
         {
-            if(arr[i]>barrier)
+            if(arr[i]>mid)
             {
                 return false;
             }
             
-            if(pages+arr[i]>barrier)
+            if(sum+arr[i]>mid)
             {
-                allocatedstud+=1;
-                pages=arr[i];
-               
+                count++;
+                sum=arr[i];
             }
             else
             {
-                pages+=arr[i];
+                sum+=arr[i];
             }
         }
-        
-        if(allocatedstud>students)
+        if(count<B)
         {
-            return false;
+                return true;
         }
-        else
-        {
-            return true;
-        }
+        return false;
     }
     
     int findPages(int A[], int N, int M) 
     {
-        if (M>N) return -1;
-        
-        int sum=0;
+        if(M>N)
+        {
+            return -1;
+        }
         int mini=A[0];
+        int sum=0;
         
         for(int i=0;i<N;i++)
         {
@@ -55,12 +52,12 @@ class Solution
             sum+=A[i];
         }
         
-        int low =mini;
+        int low= mini;
         int high= sum;
-        int res;
+        int res=0;
         while(low<=high)
         {
-            int mid =(low+high)/2;
+            int mid= (low +high)/2;
             if(ispossible(A,mid,N,M))
             {
                 res=mid;
@@ -72,5 +69,5 @@ class Solution
             }
         }
         return res;
-    }
+    }  
 };
