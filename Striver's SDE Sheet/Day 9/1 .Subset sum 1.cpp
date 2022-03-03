@@ -24,3 +24,28 @@ public:
         return v;
     }
 };
+
+
+class Solution
+{
+public:   
+    void f(int ind,vector<int>&arr,vector<int>&ds,int sum)
+    {
+        if(ind==-1)
+        {
+            // ds.push_back(sum+arr[ind]);
+            ds.push_back(sum);
+            return ;
+        }
+        f(ind-1,arr,ds,sum+arr[ind]);
+        f(ind-1,arr,ds,sum);
+    }
+    
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        int sum=0;
+        vector<int>ds;
+        f(N-1,arr,ds,sum);
+        return ds;
+    }
+};
