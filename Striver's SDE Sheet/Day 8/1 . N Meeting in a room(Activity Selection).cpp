@@ -1,6 +1,4 @@
-class Solution
-{
-    public:
+
     //Function to find the maximum number of meetings that can
     //be performed in a meeting room.
     
@@ -12,6 +10,11 @@ class Solution
     
     // tc:o(nlogn)+o(n)
     // sc:o(n) for the vector 
+class Solution
+{
+    public:
+    //Function to find the maximum number of meetings that can
+    //be performed in a meeting room.
     static bool comp(pair<int,int>a,pair<int,int>b)
     {
         if(a.second==b.second)
@@ -20,31 +23,31 @@ class Solution
         }
         return a.second<b.second;
     }
+    
     int maxMeetings(int start[], int end[], int n)
     {
-       vector<pair<int,int>>v(n);
-       for(int i=0;i<n;i++)
-       {
-           v[i]={start[i],end[i]};
-       }
-       sort(v.begin(),v.end(),comp);
-       int i=0;
-       int j=1;
-       int count=1;
-       while(j<n)
-       {
-           if(v[i].second<v[j].first)
-           {
-               count++;
-               i=j;
-               j++;
-           }
-           else
-           {
-               j++;
-           }
-       }
-       return count;
-        // Your code here
+        vector<pair<int,int>>v(n);
+        for(int i=0;i<n;i++)
+        {
+            v[i]={start[i],end[i]};
+        }
+        sort(v.begin(),v.end(),comp);
+        int i=1;
+        int j=0;
+        int count=1;
+        while(i<n)
+        {
+            if(v[i].first>v[j].second)
+            {
+                count++;
+                j=i;
+                i++;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return count;
     }
 };
