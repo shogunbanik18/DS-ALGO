@@ -51,3 +51,37 @@ public:
 //         return res%mod;
 //     }
 };
+
+
+
+class Solution {
+public:
+    // using maths permutation and Recursion Combinatorics
+    // int countOrders(int n) 
+    // {   
+    //     long res=1,mod=1000000007;
+    //     for(int i=1;i<=n;i++)
+    //     {
+    //         res=res*i;
+    //         res=res%mod;
+    //         res=res*(2*i-1);
+    //         res=res%mod;
+    //     }
+    //     return res%mod;
+    // }
+    
+    // using 1d dp 
+    int countOrders(int n) 
+    {   
+        long dp[501];
+        int mod = 1000000007;
+        dp[1]=1L;
+        dp[2]=6L;
+        for(int i=3;i<=n;i++)
+        {
+            int index= 2*i-1;
+            int permutation = index* (index+1)/2;
+            dp[i]=(dp[i-1]*(permutation))%mod;
+        }
+        return (int)dp[n];
+    }
