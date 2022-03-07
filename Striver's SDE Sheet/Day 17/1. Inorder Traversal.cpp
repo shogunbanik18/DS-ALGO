@@ -31,21 +31,25 @@ public:
         inorder(root,ans);
         return ans;
     }
-    
+}; 
     // using iterative way 
     // tc:o(n)
     // sc:o(n)
+    class Solution {
+public:
+    // iterative way using own stack 
     vector<int> inorderTraversal(TreeNode* root)
     {
+        vector<int>v;
+        TreeNode*a=root;
         stack<TreeNode*>st;
-        TreeNode*node=root;
-        vector<int>ans;
+        
         while(true)
         {
-            if(node!=NULL)
+            if(a!=NULL)
             {
-                st.push(node);
-                node=node->left;
+                st.push(a);
+                a=a->left;
             }
             else
             {
@@ -53,12 +57,13 @@ public:
                 {
                     break;
                 }
-                node=st.top();
-                ans.push_back(node->val);
+                a=st.top();
+                v.push_back(a->val);
                 st.pop();
-                node=node->right;
-            }
+                a=a->right;
+            }   
         }
-        return ans;
+        return v;
     }
+    
 };
