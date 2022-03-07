@@ -35,29 +35,31 @@ public:
 // using Iteration stack 
 class Solution {
 public:
-    vector<int> preorderTraversal(TreeNode* root)
+    // using stack (lifo) so put right first then left 
+    vector<int> preorderTraversal(TreeNode* root) \
     {
-        vector<int>ans;
         stack<TreeNode*>st;
-        if(root==NULL)
+        vector<int>v;
+        TreeNode*a=root;
+        if(a==NULL)
         {
-            return ans;
+            return v;
         }
-        st.push(root);
+        st.push(a);
         while(!st.empty())
         {
-            root=st.top();
+            a=st.top();
+            v.push_back(a->val);
             st.pop();
-            ans.push_back(root->val);
-            if(root->right!=NULL)
+            if(a->right!=NULL)
             {
-                st.push(root->right);
+                st.push(a->right);
             }
-            if(root->left!=NULL)
+            if(a->left!=NULL)
             {
-                st.push(root->left);
+                st.push(a->left);
             }
         }
-        return ans;
+        return v;
     }
 };
