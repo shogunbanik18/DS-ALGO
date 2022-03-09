@@ -46,9 +46,11 @@ public:
     
     // tc: o(n)
     // sc:o(n)
+    // skipping the duplicates
     ListNode* deleteDuplicates(ListNode* head) 
     {
-        ListNode*dummy=new ListNode(0,head);
+        ListNode*dummy=new ListNode(0);
+        dummy->next=head;
         ListNode*prev=dummy;
         ListNode*curr=head;
         while(curr!=NULL)
