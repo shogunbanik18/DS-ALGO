@@ -12,6 +12,8 @@
 class Solution {
 public:
     
+// Time Complexity: o(n)*o(logn)
+// Space Complexity:o(n)
     //using lines concept 
     vector<vector<int>> verticalTraversal(TreeNode* root)
     {
