@@ -45,14 +45,15 @@ public:
         }
         
         vector<vector<int>>ds;
-        for(auto p:mp)
+        for(auto a:mp)
         {
-            vector<int>col;
-            for(auto q: p.second)
+            vector<int>v;
+            for(auto b: a.second)
             {
-                col.insert(col.end(),q.second.begin(),q.second.end());
+                // v.insert (post,value) 
+                v.insert(v.end(),b.second.begin(),b.second.end());
             }
-            ds.push_back(col);
+            ds.push_back(v);
         }
         return ds;
     }
