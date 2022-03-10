@@ -42,6 +42,7 @@ vector<vector<int>> getTreeTraversal(BinaryTreeNode<int> *root)
 //         BinaryTreeNode<int> *node=a.first;
 //         int num=a.second;
 //         answer will be inorder ,preorder ,postorder
+           change order of ds[0] and ds[1] while submitting 
         
 //      Preorder
         if(a.second==1)
