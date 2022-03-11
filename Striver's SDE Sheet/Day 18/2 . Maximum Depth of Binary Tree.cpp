@@ -13,7 +13,7 @@ class Solution {
 public:
     // using recursion 
     // tc: o(n)
-    // sc: recursion stackspace 
+    // sc: o(1) +o(h) his height of the tree recursion stackspace 
     int maxDepth(TreeNode* root) 
     {
         if(root==NULL)
