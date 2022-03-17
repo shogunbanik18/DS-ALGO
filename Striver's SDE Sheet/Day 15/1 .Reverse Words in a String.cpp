@@ -1,49 +1,49 @@
 // using stack 
 // tc: o(n)
 // sc: o(n) auxiliary stack space 
-// class Solution {
-// public:    
-//     string reverseWords(string s) 
-//     {
-//         stack<string> st;
+class Solution {
+public:    
+    string reverseWords(string s) 
+    {
+        stack<string> st;
         
-//         string temp="";
+        string temp="";
         
-//         for(int i=0;i<s.size();i++)
-//         {
-//             if(s[i] != ' ')
-//             {
-//                 temp += s[i]; 
-//             }
+        for(int i=0;i<s.size();i++)
+        {
+            if(s[i] != ' ')
+            {
+                temp += s[i]; 
+            }
             
-//             else if(temp != "")
-//             {
-//                 st.push(temp);
-//                 temp="";
-//             }
-//         }
+            else if(temp != "")
+            {
+                st.push(temp);
+                temp="";
+            }
+        }
         
-//         if(temp.size()>0)
-//         {
-//             st.push(temp);
-//         }
+        if(temp.size()>0)
+        {
+            st.push(temp);
+        }
         
-//         string res="";
-//         while(!st.empty())
-//         {
-//             res +=st.top();
-//             st.pop();
-//             if(!st.empty())
-//             {
-//                 res += ' ';
-//             }
-//         }
-//         return res;
-//     }
-// };
+        string res="";
+        while(!st.empty())
+        {
+            res +=st.top();
+            st.pop();
+            if(!st.empty())
+            {
+                res += ' ';
+            }
+        }
+        return res;
+    }
+};
 
-// tc: o(n)
-
+// tc : o(n)
+// sc : o(n)
 // using vector 
 class Solution {
 public:    
