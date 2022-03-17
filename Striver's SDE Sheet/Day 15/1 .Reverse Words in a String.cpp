@@ -1,77 +1,89 @@
+// using stack 
+// tc: o(n)
+// sc: o(n) auxiliary stack space 
+// class Solution {
+// public:    
+//     string reverseWords(string s) 
+//     {
+//         stack<string> st;
+        
+//         string temp="";
+        
+//         for(int i=0;i<s.size();i++)
+//         {
+//             if(s[i] != ' ')
+//             {
+//                 temp += s[i]; 
+//             }
+            
+//             else if(temp != "")
+//             {
+//                 st.push(temp);
+//                 temp="";
+//             }
+//         }
+        
+//         if(temp.size()>0)
+//         {
+//             st.push(temp);
+//         }
+        
+//         string res="";
+//         while(!st.empty())
+//         {
+//             res +=st.top();
+//             st.pop();
+//             if(!st.empty())
+//             {
+//                 res += ' ';
+//             }
+//         }
+//         return res;
+//     }
+// };
+
+// tc: o(n)
+
+// using vector 
 class Solution {
-public:
-
-// using stack data structure
-string reverseWords(string s)
-{
-    int n = s.size();
-    stack<string>st;
-    string ans = "";
-    string temp = "";
-
-    for (int i = 0; i < n; i++)
+public:    
+    string reverseWords(string s) 
     {
-        if (s[i] != ' ')
+        vector<string> v;
+        
+        string temp="";
+        
+        for(int i=0;i<s.size();i++)
         {
-            temp.push_back(s[i]);
-        }
-        else if (temp != "")
-        {
-            st.push(temp);
-            temp = "";
-        }
-    }
-    if (temp != "")
-    {
-        st.push(temp);
-    }
-
-    while (!st.empty())
-    {
-        ans += st.top();
-        st.pop();
-        if (!st.empty())
-        {
-            ans += ' ';
-        }
-    }
-    return ans;
-}
-    
-   // Using 2 pointer appraoch 
-   string reverseWords(string s)
-    {
-        int n = s.size();
-        vector<string>v;
-        string a = "";
-        for (int i = 0; i < n; i++)
-        {
-            if (s[i] != ' ')
+            if(s[i] != ' ')
             {
-                a += s[i];
+                temp += s[i]; 
             }
+            
             else
             {
-                if (a.size() > 0)
+                if(temp.size()>0)
                 {
-                    v.push_back(a);
+                    v.push_back(temp);
                 }
-                a.clear();
+                temp = "";
             }
         }
-        if (a.size() > 0)
+        
+        if(temp.size()>0)
         {
-            v.push_back(a);
+            v.push_back(temp);
         }
-        a.clear();
-
-        for (int i = v.size() - 1; i > 0; i--)
+        
+        temp = "";
+        
+        for(int i=v.size()-1;i>0;i--)
         {
-            a += v[i];
-            a += ' ';
+            temp += v[i];
+            temp+= ' ';
         }
-        a += v[0];
-        return a;
+        temp += v[0];
+        
+        return temp;
     }
-
 };
