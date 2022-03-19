@@ -47,3 +47,43 @@ public:
  * obj->push(val);
  * int param_2 = obj->pop();
  */
+
+
+// using map and priority queue
+// 1 for the frequency cnt 
+// 1 for the group stack and max frequncy variable 
+
+// tc : o(n)
+// sc : o(1)
+class FreqStack {
+public:
+    map<int,int> freq;
+    priority_queue<int>pq;
+    vector<int> level[20001];
+    
+    FreqStack() 
+    {
+        
+    }
+    
+    void push(int val)
+    {
+        freq[val]++;
+        pq.push(freq[val]);
+        level[freq[val]].push_back(val);
+    }
+    
+    int pop() 
+    {
+        // find the element with max frequncy 
+        
+        int l = pq.top();
+        pq.pop();
+        
+        int val = level[l].back();
+        level[l].pop_back();
+        freq[val]--;
+        
+        return val;
+    }
+};
