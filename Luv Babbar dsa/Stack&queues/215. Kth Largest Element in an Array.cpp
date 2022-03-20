@@ -1,16 +1,16 @@
 // using sorting and searching 
 // tc :o(nlogn)
 // sc :o (1)
-// class Solution {
-// public:
-//     int findKthLargest(vector<int>& nums, int k)
-//     {
-//         sort(nums.begin(),nums.end());
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k)
+    {
+        sort(nums.begin(),nums.end());
         
-//         int x = nums.size()-k;
-//         return nums[x];
-//     }
-// };
+        int x = nums.size()-k;
+        return nums[x];
+    }
+};
 
 // using priority queue 
 // tc : o(nlogk)
