@@ -71,3 +71,70 @@ class Solution
         return res;
     }  
 };
+
+
+// gfg 
+// using the concept of binary search on answer
+// tc : o(NlogN)
+// sc : o(1)
+class Solution 
+{
+    public:
+    //Function to find minimum number of pages.
+    
+    bool check(int mid,int *A,int N,int M)
+    {
+        int count=1,sum1=0;
+        for(int i=0;i<N;i++)
+        {
+            if(sum1+A[i] <= mid)
+            {
+                 sum1 += A[i];
+            }
+            
+            else
+            {
+                count+=1;
+                if(count>M or A[i]>mid)
+                {
+                    return false;
+                }
+                sum1 = A[i];
+            }
+        }
+        
+        return true;
+    }
+    
+    
+    int findPages(int A[], int N, int M) 
+    {
+        int mini = 1e9;
+        int sum=0;
+        for(int i=0;i<N;i++)
+        {
+            sum += A[i];
+            mini = min(mini,A[i]);
+        }
+    
+        int low = mini;
+        int high = sum;
+        int ans=0;
+        
+        while(low<=high)
+        {
+            int mid  = low + (high-low)/2;
+            
+            if(check(mid,A,N,M)==true)
+            {
+                high = mid-1;
+            }
+            else
+            {
+                low = mid+1;
+            }
+        }
+        
+        return low;
+    }
+};
