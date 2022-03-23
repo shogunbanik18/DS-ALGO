@@ -1,5 +1,54 @@
 
 // Solution 1: Brute Force Solution
+// brute force 
+// generating all the permutaions of a given string and sorting then finding the kth element
+
+class Solution 
+{
+private:
+    
+    void f(string s,int ind, vector<string>& ds)
+    {
+        if(ind==s.size())
+        {
+            ds.push_back(s);
+            return;
+        }
+        
+        for(int i=ind;i<s.size();i++)
+        {
+            swap(s[i],s[ind]);
+            f(s,ind+1,ds);
+            swap(s[i],s[ind]);
+        }
+    }
+    
+public:
+    string getPermutation(int n, int k)
+    {
+        string s;
+        
+        for(int i=1;i<=n;i++)
+        {
+            s.push_back(i + '0');
+        }
+        
+        vector<string>ds;
+        
+        f(s,0,ds);
+        
+        sort(ds.begin(),ds.end());
+        
+        string res;
+        res = ds[k-1];
+        
+        return res;
+        // auto it = ds.begin() + (k - 1);
+        // return *it;
+    }
+};
+
+
 
 // Approach:  
 
