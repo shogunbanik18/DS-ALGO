@@ -42,38 +42,38 @@
 // sc :o(1)
 
 // using iteration 
-// class Solution 
-// {
-// private: 
+class Solution 
+{
+private: 
     
-//     int solve(int start , int target)
-//     {
-//         int count=0;
+    int solve(int start , int target)
+    {
+        int count=0;
         
-//         while(target> start)
-//         {
-//             if(target%2==0)
-//             {
-//                 target = target/2;
-//                 count++;
-//             }
+        while(target> start)
+        {
+            if(target%2==0)
+            {
+                target = target/2;
+                count++;
+            }
             
-//             else if(target%2!=0)
-//             {
-//                 target = target + 1;
-//                 count++;
-//             }
-//         }
+            else if(target%2!=0)
+            {
+                target = target + 1;
+                count++;
+            }
+        }
 
-//         return count + start -target;
-//     }
+        return count + start -target;
+    }
     
-// public:
-//     int brokenCalc(int startValue, int target)
-//     {
-//         return solve(startValue,target);
-//     }
-// };
+public:
+    int brokenCalc(int startValue, int target)
+    {
+        return solve(startValue,target);
+    }
+};
 
 
 // using recursion 
