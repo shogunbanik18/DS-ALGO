@@ -1,3 +1,43 @@
+// Using Hashing
+// tc : o(s) + o(t)
+// sc : o(n) or(nlogn)
+class Solution {
+public:
+    bool isAnagram(string s, string t) 
+    {
+        map<char,int>mp;
+        
+        // check for same size 
+        if(s.size() != t.size())
+        {
+            return false;
+        }
+        
+        // if same size then 
+        for(auto a : s)
+        {
+            mp[a]++;
+        }
+        
+        for(auto b : t)
+        {
+            mp[b]--;
+        }
+        
+        for(auto x : mp)
+        {
+           if(x.second!=0)
+           {
+               return false;
+           }
+        }
+        
+        return true;
+    }
+};
+
+
+
 // // Using Hashing
 // // tc : o(s) + o(t)
 // // sc : o(n) or(nlogn)
