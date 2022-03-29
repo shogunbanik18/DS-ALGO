@@ -1,64 +1,115 @@
-// recursion + hashing 
-// tc: o(2^n)
-// sc: o(n)stack space +o(n) hashing
-// similar to subset sum
-class Solution 
+// using map + Recursion 
+// similar to combination sum + hashing 
+// tc : o(2^n) Exponential
+// sc : o(n) map space  + o(n) stack space
+class Solution
 {
-private : 
-        void solve(string digits, int index,string output,vector<string> mapping,vector<string>& ans)
-        {
-            // base case 
-            if(index == digits.size())
-            {
-                ans.push_back(output);
-                return;
-            }
-
-            int num = digits[index]-'0';
-            string value = mapping[num];
-
-            for(int i=0;i<value.size();i++)
-            {
-                output.push_back(value[i]);
-                solve(digits , index+1 ,output , mapping, ans);
-                output.pop_back();
-            }
-        }
+public:
     
-    public:
-        vector<string> letterCombinations(string digits) 
+    void solve(int ind, string digits, vector<string>& ans, string res , map<int,string>& mp)
+    {
+        if(ind==digits.size())
         {
-
-            vector<string>ans;
-            string output = "";
-
-            if(digits.size()==0)
-            {
-                return ans;
-            }
-
-            // use frequncy array of strings
-            vector<string> mapping = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-            int index=0;
-
-            solve(digits,index,output,mapping,ans);    
+            ans.push_back(res);
+            return ;
+        }
+        
+        int num = digits[ind] - '0';
+        cout<<num<<endl;
+        
+        // if()
+        
+        string str = mp[num];
+        int x = str.size();
+        
+        for(int i=0;i<x;i++)
+        {
+            res.push_back(str[i]);
+            solve(ind + 1,digits,ans,res,mp);
+            res.pop_back();
+        }
+    }
+    
+    vector<string> letterCombinations(string digits)
+    {
+        vector<string> ans;
+        string res = "";
+        
+        int n = digits.size();
+        if(n==0)
+        {
             return ans;
         }
+        
+        
+        map< int,string > mp;
+        // mp[0] = "";
+        // mp[1] = "";
+        mp[2] = "abc";
+        mp[3] = "def";
+        mp[4] = "ghi";
+        mp[5] = "jkl";
+        mp[6] = "mno";
+        mp[7] = "pqrs";
+        mp[8] = "tuv";
+        mp[9] = "wxyz";
+        
+//         debug
+//         for(auto it : mp)
+//         {
+//             cout<< it.first << " "<< it.second <<endl;
+//         }
+        
+        int ind=0;
+        
+       
+        
+        solve(ind,digits,ans,res,mp);
+        return ans;
+    }
 };
 
-//         map<int,string> mp;
+// using Recursion + combinaion sum concept 
+class Solution {
+public:
+    
+    void solve(int ind, string digits, vector<string>& ans, string res , vector<string>& mapping)
+    {
+        if(ind==digits.size())
+        {
+            ans.push_back(res);
+            return ;
+        }
         
-//         mp[2] = "abc";
-//         mp[3] = "def";
-//         mp[4] = "ghi";
-//         mp[5] = "jkl";
-//         mp[6] = "mno";
-//         mp[7] = "pqrs";
-//         mp[8] = "tuv";
-//         mp[9] = "wxyz";
+        // convert the digit to int then check
+        int number = digits[ind]-'0';
+        string a = mapping[number];
+        int x = a.size();
         
-//         Debug
-//         for(auto x : mp)
-//         {
-//             cout<<x.first<<" "<<x.second<<endl;
-//         }
+        for(int i=0;i<x;i++)
+        {
+            res.push_back(a[i]);
+            solve(ind + 1,digits,ans,res,mapping);
+            res.pop_back();
+        }
+    }
+    
+    vector<string> letterCombinations(string digits)
+    {
+        vector<string> ans;
+        string res = "";
+        int n = digits.size();
+        
+        if(n==0)
+        {
+            return ans;
+        }
+        
+        vector<string> mapping = {"" , "", "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"}; 
+        
+        int ind=0;
+        
+        solve(ind,digits,ans,res,mapping);
+        return ans;
+    }
+};
