@@ -84,6 +84,8 @@ public:
 // optimised approach 
 // instead of using 4 if statements using a for loop and a string ir ="DLRU"
 // using dx and dy array 
+// tc : O(4^(m*n))
+// sc : O(m*n) stack space 
 class Solution
 {
 public:
