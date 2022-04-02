@@ -1,52 +1,68 @@
-class Solution {
+
+// class Solution 
+// {
+// public:
+    
+//     int f(int n)
+//     {
+//         if(n==0 or n==1)
+//         {
+//             return 1;
+//         }
+        
+//         return f(n-1)+f(n-2);
+//     }
+    
+//     int climbStairs(int n)
+//     {
+//         return f(n);       
+//     }
+// };
+
+
+// class Solution 
+// {
+// public:
+    
+//     int f(int n,vector<int>& dp)
+//     {
+//         if(n==0 or n==1)
+//         {
+//             return 1;
+//         }
+        
+//         if(dp[n] != -1)
+//         {
+//             return dp[n];
+//         }
+        
+//         return dp[n] = f(n-1,dp) + f(n-2,dp);
+//     }
+    
+//     int climbStairs(int n)
+//     {
+//         vector<int>dp(n+1,-1);
+//         return f(n,dp);       
+//     }
+// };
+
+class Solution 
+{
 public:
-    // using recursion
-    // tc:o(2^n)
-    // sc:o(1)
-    int checkclimb(int ind)
+ 
+    int climbStairs(int n)
     {
-        // base case 
-        if(ind==0 )
+        vector<int>dp(n+1,0);
+        
+        dp[0] =1;
+        dp[1] = 1;
+        
+        for(int ind = 0; ind <n;ind++)
         {
-            return 1;
-        }
-        if(ind==1)
-        {
-            return 1;
-        }
-        return checkclimb(ind-1)+checkclimb(ind-2);
-    }
-    
-    int climbStairs(int n) 
-    {
-        return checkclimb(n);
-    }
-    
-    // tc :O(n)
-    // sc:O(n)
-    // using memoisation 
-    int checkclimb(int ind,vector<int>&dp)
-    {
-        // base case 
-        if(ind==0 )
-        {
-            return 1;
-        }
-        if(ind==1)
-        {
-            return 1;
+            dp[n] = dp[n-1] + dp[n-2];
         }
         
-        if(dp[ind]!=-1)
-        {
-            return dp[ind];
-        }
-        return dp[ind]=checkclimb(ind-1,dp)+checkclimb(ind-2,dp);
-    }
-    
-    int climbStairs(int n) 
-    {
-        vector<int>dp(n+1,-1);
-        return checkclimb(n,dp);
+        return dp[n];       
     }
 };
+
