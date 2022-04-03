@@ -12,7 +12,13 @@ private:
         for(int i=0 ; i<weights.size() ; i++)
         {
             // check for the sum then only add
-            if(sum1 + weights[i] <= mid)
+            if(weights[i] >mid )
+            {
+                    return false;
+            }
+                
+            
+            else if(sum1 + weights[i] <= mid)
             {
                 sum1 += weights[i];
             }
@@ -20,16 +26,16 @@ private:
             else
             {
                 count++;
-                
-                if(weights[i] >mid or count>days)
-                {
-                    return false;
-                }
-                
                 sum1 = weights[i];
             }
         }
-        return true;
+        
+        if(count<=days)
+        {
+                return true;
+        }
+        
+        return false;
     }
     
 public:
