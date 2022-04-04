@@ -143,13 +143,16 @@
 // Optimisation 2 
 // use morris inorder traversal + count method 
 // tc : o(n)
-// // sc : o(n)
-class Solution {
+// sc : o(1)
+
+class Solution 
+{
 public:
     
-    int kthSmallest(TreeNode* root, int k) 
+    int count = 0,ans;
+    
+    void inorder(TreeNode* root,int k)
     {
-        int ans ,count =0;
         TreeNode* prev = root;
         
         while(prev != NULL)
@@ -157,10 +160,12 @@ public:
             if(prev->left == NULL)
             {
                 count++;
+                
                 if(count==k)
                 {
                     ans = prev->val;
                 }
+                
                 prev = prev->right;
             }
             
@@ -173,25 +178,31 @@ public:
                     curr = curr->right;
                 }
                 
-                if(curr->right == NULL)
+                if(curr->right==NULL)
                 {
                     curr->right = prev;
-                    prev = prev ->left;
+                    prev = prev->left;
                 }
                 
                 else
                 {
                     curr->right = NULL;
+                    
                     count++;
                     if(count==k)
                     {
-                        ans = prev->val;
+                        ans =prev->val;
                     }
                     
-                    prev = prev ->right;
+                    prev = prev->right;
                 }
             }
         }
+    }
+    
+    int kthSmallest(TreeNode* root, int k) 
+    {
+        inorder(root,k);
         return ans;
     }
 };
