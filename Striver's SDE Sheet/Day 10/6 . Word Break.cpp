@@ -1,53 +1,157 @@
-class Solution {
+// // using Recursion + Backtracking TLE
+// // tc : o(2^n)
+// // sc : o(n) stack space
+// class Solution
+// {
+// public:
+    
+//     bool f(int ind , string s , map<string,int>&mp )
+//     {
+//         int n = s.size();
+//         if(ind==n)
+//         {
+//             return true;
+//         }
+        
+//         for(int  i = ind ; i <n; i++)
+//         {
+//             if( mp.find(s.substr(ind , i-ind+1 )) != mp.end() and f(i+1 ,s, mp)==true)
+//             {
+//                 return true;
+//             }
+//         }
+        
+//         return false;
+//     }
+    
+//     bool wordBreak(string s, vector<string>& wordDict)
+//     {
+//         map<string,int> mp;
+        
+//         for(auto x : wordDict)
+//         {
+//             mp[x]++;
+//         }
+        
+//         // debug
+//         // for(auto x : mp)
+//         // {
+//         //     cout<<x.first<<" "<<x.second<<endl;
+//         // }
+        
+//         return f(0,s,mp);
+        
+//     }
+// };
+
+
+// // using Optimisation using Memoisation dp
+// // tc : o(n*n)
+// // sc : o(n*n) + o(n) stack space
+// class Solution
+// {
+// public:
+    
+//     bool f(int ind , string s , map<string,int>&mp ,vector<int> &dp)
+//     {
+//         int n = s.size();
+//         if(ind==n)
+//         {
+//             return true;
+//         }
+        
+//         if(dp[ind]!=-1)
+//         {
+//             return dp[ind];
+//         }
+        
+//         for(int  i = ind ; i <n; i++)
+//         {
+//             if( mp.find(s.substr(ind , i-ind+1 )) != mp.end() and f(i+1 ,s, mp , dp )==true)
+//             {
+//                 return dp[ind] = true;
+//             }
+//         }
+        
+//         return dp[ind] = false;
+//     }
+    
+//     bool wordBreak(string s, vector<string>& wordDict)
+//     {
+//         map<string,int> mp;
+        
+//         for(auto x : wordDict)
+//         {
+//             mp[x]++;
+//         }
+        
+//         // debug
+//         // for(auto x : mp)
+//         // {
+//         //     cout<<x.first<<" "<<x.second<<endl;
+//         // }
+        
+//         // changing parameters 
+//         int n = s.size();
+//         vector<int>dp(n,-1);
+        
+//         return f(0,s,mp,dp);
+        
+//     }
+// };
+
+
+// using Optimisation using Tabulation dp
+// tc : o(n*n)
+// sc : o(n*n)
+class Solution
+{
 public:
-//     // using recursion and backtracking step
-//     // tc:o(2^n)
-//     // partitioning problem type 
-    bool wordBreak(string s, vector<string>& wordDict) 
+    
+    bool f(int ind , string s , map<string,int>&mp ,vector<int> &dp)
     {
-        if(find(wordDict.begin(),wordDict.end(),s)!=wordDict.end())
+        int n = s.size();
+        if(ind==n)
         {
             return true;
         }
         
-        for(int i=1;i<s.size();i++)
+        if(dp[ind]!=-1)
         {
-            string left =s.substr(0,i);
-            if(find(wordDict.begin(),wordDict.end(),left)!=wordDict.end() and wordBreak(s.substr(i),wordDict))
+            return dp[ind];
+        }
+        
+        for(int  i = ind ; i <n; i++)
+        {
+            if( mp.find(s.substr(ind , i-ind+1 )) != mp.end() and f(i+1 ,s, mp , dp )==true)
             {
-                return true;
+                return dp[ind] = true;
             }
         }
-        return false;
+        
+        return dp[ind] = false;
     }
     
-    // using Memoisation 
-    // top down dp 
-    // tc:o(n*t)
-    // partitioning problem type 
-    map <string,bool> m;
-    bool wordBreak(string s, vector<string>& wordDict) 
+    bool wordBreak(string s, vector<string>& wordDict)
     {
-        if(find(wordDict.begin(),wordDict.end(),s)!=wordDict.end())
+        map<string,int> mp;
+        
+        for(auto x : wordDict)
         {
-            return true;
-        }
-        if(m.find(s)!=m.end())
-        {
-            return m[s];
+            mp[x]++;
         }
         
-        for(int i=1;i<s.size();i++)
-        {
-            string left =s.substr(0,i);
-            
-            if(find(wordDict.begin(),wordDict.end(),left)!=wordDict.end() and wordBreak(s.substr(i),wordDict))
-            {
-                m[s]=true;
-                return true;
-            }
-        }
-        m[s]=false;
-        return false;
+        // debug
+        // for(auto x : mp)
+        // {
+        //     cout<<x.first<<" "<<x.second<<endl;
+        // }
+        
+        // changing parameters 
+        int n = s.size();
+        vector<int>dp(n,-1);
+        
+        return dp[0],s,mp,dp);
+        
     }
 };
