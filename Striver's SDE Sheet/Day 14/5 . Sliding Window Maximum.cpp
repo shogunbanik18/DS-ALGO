@@ -53,7 +53,8 @@
             
             
 //             // current window is from [i-k+1 ,i ]
-//             while(! (pq.top().second >(i-k) ))
+//             // while(! (pq.top().second >(i-k) ))
+//             while(pq.top().second <= (i-k))
 //             {
 //                 pq.pop();
 //             }
@@ -66,9 +67,9 @@
 // };
 
 
-// // using dequeue  
-// // tc : o(n) + o(n)
-// // sc : o(1) amortised
+// // // using dequeue  
+// // // tc : o(n) + o(n)
+// // // sc : o(1) amortised
 class Solution
 {
 public:
@@ -76,18 +77,18 @@ public:
     {
         int n = nums.size();
         vector<int>v;
-        
-        deque <int> dq;
+        deque<int> dq;
         
         for(int i=0;i<n;i++)
         {
-            // out of bound 
-            if(!dq.empty() and  dq.front()== i-k)
+            // out of bound cases 
+            if(!dq.empty() and dq.front() == i-k)
             {
                 dq.pop_front();
             }
             
-            while(!dq.empty() and nums[dq.back()] < nums[i])
+            
+            while(!dq.empty() and nums[dq.back()] < nums[i] )
             {
                 dq.pop_back();
             }
@@ -99,7 +100,7 @@ public:
                 v.push_back(nums[dq.front()]);
             }
         }
-         
-        return v;      
+        
+        return v;
     }
 };
