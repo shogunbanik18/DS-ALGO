@@ -98,3 +98,43 @@ class Solution{
        return v;
     }
 };
+
+// Interview Bit 
+// using map
+vector<int> Solution::dNums(vector<int> &A, int B) 
+{
+    vector<int>v; 
+
+    int n = A.size();
+    map<int,int> mp;
+
+    for(int i=0;i<B;i++)
+    {
+        mp[ A[i] ]++;
+    }
+
+    v.push_back(mp.size());
+
+    for(int i =B;i<n;i++)
+    {
+        if(mp.find(A[i-B]) != mp.end())
+        {
+            if(mp [A[i-B]] == 1)
+            {
+                mp.erase(A[i-B]);
+            }
+            else
+            {
+                mp[A[i-B]] --;
+            }
+
+        }
+
+        mp[ A[i] ]++;
+
+        v.push_back(mp.size());
+    }
+
+    return v;
+
+}
