@@ -1,70 +1,70 @@
-// // TLE 
+// TLE
+// median found in asorted way ??
+// tc : o(n*n)
+// sc : o(n)
 // class MedianFinder 
 // {
 // public:
-    
 //     vector<int>v;
     
-//     MedianFinder() 
-//     {
+//     MedianFinder() {
         
 //     }
     
 //     void addNum(int num) 
 //     {
 //         v.push_back(num);
-        
 //     }
     
-//     double findMedian() 
+//     double findMedian()
 //     {
+//         sort(v.begin(),v.end());
 //         int n = v.size();
-//         sort(v.begin() , v.end());
-        
 //         double mid;
         
-//         if(n%2!=0)
+//         if(n%2==0)
 //         {
-//             mid = v[n/2];
+//             int mid1 = n/2;
+//             int mid2 = (n-1)/2;
+            
+//             // type casting 
+//             mid = (double)(v[mid1] + v[mid2])/(double)2;
 //         }
         
 //         else
 //         {
-//             double mid1 = v[(n-1)/2];
-//             double mid2 = v[n/2];
-            
-//             mid = (mid1+mid2)/2;
-//         }    
+//             mid = v[n/2];
+//         }
+        
 //         return mid;
 //     }
 // };
 
-// /**
-//  * Your MedianFinder object will be instantiated and called as such:
-//  * MedianFinder* obj = new MedianFinder();
-//  * obj->addNum(num);
-//  * double param_2 = obj->findMedian();
-//  */
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder* obj = new MedianFinder();
+ * obj->addNum(num);
+ * double param_2 = obj->findMedian();
+ */
 
-
-// using the concept of priority queue
+// Using the concept of priority queue
 // tc : o(nlogn)
 // sc : o(1)
+// using 2 heap concept 
 class MedianFinder 
 {
 public:
     
-    priority_queue<int , vector<int> , greater<int> > minheap; 
     priority_queue<int> maxheap;
-        
-    MedianFinder() 
-    {
+    priority_queue< int,vector<int> , greater<int> > minheap;
+    
+    MedianFinder() {
         
     }
     
     void addNum(int num) 
     {
-        if(maxheap.empty() or maxheap.top() > num)
+        if(maxheap.empty() or  maxheap.top() > num)
         {
             maxheap.push(num);
         }
@@ -73,53 +73,50 @@ public:
             minheap.push(num);
         }
         
-        
+        // check for sizes
         if(maxheap.size() > minheap.size() + 1 )
         {
             minheap.push(maxheap.top());
             maxheap.pop();
         }
         
-        else if(minheap.size() > maxheap.size() + 1 )
+        else if(minheap.size() > maxheap.size() + 1)
         {
             maxheap.push(minheap.top());
             minheap.pop();
         }
     }
     
-    double findMedian() 
+    double findMedian()
     {
-       if(minheap.size() == maxheap.size())
-       {
-           if(maxheap.empty())
-           {
-               return 0;
-           }
-           
-           else
-           {
-               double ans = (maxheap.top() + minheap.top()) /2.0;
-               return ans;
-           }
-       }
+        double mid;
+        if(maxheap.size() == minheap.size())
+        {
+            if(maxheap.empty())
+            {
+                return 0;
+            }
+            
+            else
+            {
+                // type casting 
+                mid = (double)(maxheap.top() + minheap.top())/(double)2;
+            }
+        }
         
         else
         {
             if(maxheap.size() > minheap.size())
             {
-                return maxheap.top();
+                mid = maxheap.top();
             }
+            
             else
             {
-                return minheap.top();
+                mid = minheap.top();
             }
         }
+        
+        return mid;
     }
 };
-
-/**
- * Your MedianFinder object will be instantiated and called as such:
- * MedianFinder* obj = new MedianFinder();
- * obj->addNum(num);
- * double param_2 = obj->findMedian();
- */
