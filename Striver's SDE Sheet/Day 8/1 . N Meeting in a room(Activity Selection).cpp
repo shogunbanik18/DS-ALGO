@@ -51,3 +51,63 @@ class Solution
         return count;
     }
 };
+
+
+// Coding Ninjas 
+// TC : O(n) +O(n log n) + O(n) ~O(n log n)
+// sc: o(n)
+#include<bits/stdc++.h>
+struct meeting{
+	int start;
+	int end;
+	int pos;
+};
+
+bool comp(struct meeting m1 ,struct meeting m2)
+{
+	if(m1.end < m2.end)
+	{
+		return true;
+	}
+	else if(m1.end>m2.end)
+	{
+		return false;
+	}
+	else if(m1.pos<m2.pos)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+vector<int> maximumMeetings(vector<int> &s, vector<int> &e) {
+	int n = s.size();
+	struct meeting meet[n];
+	
+	for(int i=0;i<n;i++)
+	{
+		meet[i].start = s[i];
+		meet[i].end = e[i];
+		meet[i].pos = i+1;
+	}
+	
+	sort(meet,meet+n,comp);
+	
+	vector<int>ans;
+	int limit = meet[0].end;
+	ans.push_back(meet[0].pos);
+	
+// 	last mein humhe position chahiye bas
+	for(int i=1;i<n;i++)
+	{
+		if(meet[i].start>limit)
+		{
+			limit = meet[i].end;
+			ans.push_back(meet[i].pos);
+		}
+	}
+	return ans;
+}
