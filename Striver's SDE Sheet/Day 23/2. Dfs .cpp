@@ -1,3 +1,5 @@
+// tc : o(n) + o(n)
+// sc : o(n)
 class Solution {
   public:
     // Function to return a list containing the DFS traversal of the graph.
