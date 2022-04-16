@@ -4,8 +4,7 @@
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    
-    bool check(int node ,vector<int>& vis ,vector<int>adj[])
+     bool check(int node ,vector<int>& vis ,vector<int>adj[])
     {
         queue< pair< int,int>> q;
         vis[node] = 1;
@@ -33,7 +32,6 @@ class Solution {
                 }
                   
             }
-            return false;
         }
         
     }
