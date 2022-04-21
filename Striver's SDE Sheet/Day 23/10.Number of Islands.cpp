@@ -1,85 +1,103 @@
-// class Solution {
+// // // intuition : erase all the nearby islands when found one
+// using dfs 
+// class Solution 
+// {
 // public:
-    
-//     void dfs(int i,int j ,vector<vector<char>> &grid,int count)
+      
+//     void dfs(int i,int j ,vector<vector<char>> &grid)
 //     {
-//         int n = grid.size();
-//         int m = grid[0].size();
-//         if(i==0 and j==0)
+//         int m = grid.size();
+//         int n = grid[0].size();
+//         if(i<0 or j<0 or i>=m or j>=n or grid[i][j]=='0')
 //         {
 //             return;
 //         }
+//         grid[i][j]='0';
         
-        
-//         if(grid[i][j]=='1' and grid[i-1][j]=='0' and grid[i+1][j]=='0' and grid[j-1][j]=='0' and grid[i][j+1]=='0')
-//         {
-//             count++;
-//         }
-        
-//         if(i-1>=0 and grid[i][j]=='1')
-//             dfs(i-1,j,grid,count);
-        
-//         if(j-1>=0 and grid[i][j]=='1')
-//             dfs(i,j-1,grid,count);
-        
-//         if(i+1<n and grid[i][j]=='1')
-//             dfs(i+1,j,grid,count);
-        
-//         if(j+1<m and grid[i][j]=='1')
-//             dfs(i-1,j,grid,count);
-    
+//         dfs(i-1,j,grid);
+//         dfs(i+1,j,grid);
+//         dfs(i,j+1,grid);
+//         dfs(i,j-1,grid);
+       
 //     }
     
-//     int numIslands(vector<vector<char>>& grid)
+    
+//     int numIslands(vector<vector<char>>& grid) 
 //     {
-//         int n = grid.size();
-//         int m = grid[0].size();
+//         int m = grid.size();
+//         int n = grid[0].size();
+//         int island = 0;
         
-//         int count = 0;
-//         dfs(n-1,m-1,grid,count);
-//         return count;
+//         for(int i = 0;i<m;i++)
+//         {
+//             for(int j = 0;j<n;j++)
+//             {
+//                 if(grid[i][j]=='1')
+//                 {
+//                     island++;
+//                     dfs(i,j,grid);
+//                 }
+//             }
+//         }
+        
+//         return island;
 //     }
 // };
 
 
-// intuition : erase all the nearby islands when found one 
-// using simple recursion 
+
+// // intuition : erase all the nearby islands when found one
+// using bfs 
 class Solution 
 {
 public:
-    
-    void dfs(int i,int j ,vector<vector<char>> &grid)
+      
+    void bfs(int i,int j ,vector<vector<char>> &grid)
     {
-        int n = grid.size();
-        int m = grid[0].size();
-        if(i<0 or j<0 or i>=n or j>=m or grid[i][j]=='0')
-        {
-            return;
-        }
-        grid[i][j] = '0';
+        int m = grid.size();
+        int n = grid[0].size();
         
-        // Four directions 
-        dfs(i-1,j,grid);
-        dfs(i+1,j,grid);
-        dfs(i,j+1,grid);
-        dfs(i,j-1,grid);
+        queue<pair<int,int>>q;
+        q.push({i,j});
+        
+        while(!q.empty())
+        {
+            auto a = q.front();
+            q.pop();
+            
+            int cr = a.first;
+            int cc = a.second;
+            
+            if(cc<0 or cr<0 or cr>=m or cc>=n or grid[cr][cc]=='0')
+            {
+                continue;
+            }
+            
+            grid[cr][cc] = '0';
+            
+            q.push({cr-1,cc});
+            q.push({cr+1,cc});
+            q.push({cr,cc+1});
+            q.push({cr,cc-1});
+        }
+       return ;
     }
     
-    int numIslands(vector<vector<char>>& grid)
+    
+    int numIslands(vector<vector<char>>& grid) 
     {
-        int n = grid.size();
-        int m = grid[0].size();
-        
+        int m = grid.size();
+        int n = grid[0].size();
         int island = 0;
         
-        for(int i=0;i<n;i++)
+        for(int i = 0;i<m;i++)
         {
-            for(int j = 0;j<m;j++)
+            for(int j = 0;j<n;j++)
             {
                 if(grid[i][j]=='1')
                 {
                     island++;
-                    dfs(i,j,grid);
+                    bfs(i,j,grid);
                 }
             }
         }
@@ -87,3 +105,54 @@ public:
         return island;
     }
 };
+
+
+
+
+
+// intuition : erase all the nearby islands when found one 
+// using simple recursion 
+// traversing the island and marking it as visited 
+// class Solution 
+// {
+// public:
+    
+//     void dfs(int i,int j ,vector<vector<char>> &grid)
+//     {
+//         int n = grid.size();
+//         int m = grid[0].size();
+//         if(i<0 or j<0 or i>=n or j>=m or grid[i][j]!='1')
+//         {
+//             return;
+//         }
+//         grid[i][j] = '2';
+        
+//         // Four directions 
+//         dfs(i-1,j,grid);
+//         dfs(i+1,j,grid);
+//         dfs(i,j+1,grid);
+//         dfs(i,j-1,grid);
+//     }
+    
+//     int numIslands(vector<vector<char>>& grid)
+//     {
+//         int n = grid.size();
+//         int m = grid[0].size();
+        
+//         int island = 0;
+        
+//         for(int i=0;i<n;i++)
+//         {
+//             for(int j = 0;j<m;j++)
+//             {
+//                 if(grid[i][j]=='1')
+//                 {
+//                     dfs(i,j,grid);
+//                     island++;
+//                 }
+//             }
+//         }
+        
+//         return island;
+//     }
+// };
