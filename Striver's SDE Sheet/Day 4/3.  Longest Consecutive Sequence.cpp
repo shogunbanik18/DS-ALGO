@@ -74,3 +74,45 @@ public:
      }
     
 };
+
+
+
+// using optimised approach 
+// tc : o(n)
+// sc : o(n)
+class Solution 
+{
+public:
+    int longestConsecutive(vector<int>& nums) 
+    {
+        map<int,int>mp;
+        int n = nums.size();
+        int ans = 0;
+        
+        for(auto x : nums)
+        {
+            mp[x]++;
+        }
+        
+        for(auto x : nums)
+        {
+            if(mp.find(x-1)!=mp.end())
+            {
+                continue;
+            }
+            
+            else
+            {
+                int size = 1;
+                int p = x +1;
+                while(mp.find(p)!=mp.end())
+                {
+                    p+=1;
+                    size++;
+                }
+                ans = max(ans,size);
+            }
+        }
+        return ans;
+    }
+};
