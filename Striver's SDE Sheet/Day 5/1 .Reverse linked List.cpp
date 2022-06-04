@@ -32,3 +32,27 @@ public:
          return prev;
      }
 };
+
+
+// using recursion 
+class Solution {
+public:
+    
+     ListNode* reverse(ListNode* head,ListNode* prev)
+     {
+         if(head==NULL)
+         {
+             return prev;
+         }
+         
+         ListNode* temp = head->next;
+         head->next = prev;
+         return reverse(temp,head);
+     }
+    
+    
+    ListNode* reverseList(ListNode* head) 
+    {
+        return reverse(head,NULL);
+    }
+};
