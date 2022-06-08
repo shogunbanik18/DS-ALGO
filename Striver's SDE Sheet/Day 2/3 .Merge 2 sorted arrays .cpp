@@ -1,8 +1,8 @@
-// tc : o(n*m) 
-// sc : o(1)
 #include<bits/stdc++.h>
 using namespace std;
 
+// tc : o(n*m) 
+// sc : o(1)
 void merge1(vector<int>&arr1,vector<int>&arr2,int m,int n)
 {
     int k;
@@ -21,6 +21,48 @@ void merge1(vector<int>&arr1,vector<int>&arr2,int m,int n)
         }
         arr2[k-1] = first;
     }
+}
+
+// tc : o(logn)
+// sc : o(1)
+void merge2(vector<int>&arr1,vector<int>&arr2,int m,int n)
+{
+    int gap = (m+n)/2;
+    int i=0;
+    int j=gap;
+    
+    while(gap!=0)
+    {
+        // 3 cases i and j is on arr1 
+        if(i<m and j<m and arr1[i]>arr1[j])
+        {
+            swap(arr1[i],arr1[j]);
+        }
+        
+        else if(i<m and j>=m and arr1[i]>arr2[j-m])
+        {
+            swap(arr1[i],arr2[j-m]);
+        }
+        
+        else if(i>=m and j>=m and arr2[i-m]>arr2[j-m])
+        {
+            swap(arr2[i-m],arr2[j-m]);
+        }
+        
+        if(gap==1)
+        {
+            gap = 0;
+        }
+        
+        else
+        {
+            gap = gap/2;
+        }
+        
+        i++;
+        j++;
+    }
+        
 }
 
 void print(vector<int>&arr,int a)
@@ -42,8 +84,11 @@ int main()
     merge1(arr1,arr2,m,n);
     print(arr1,m);
     print(arr2,n);
+    
+    merge2(arr1,arr2,m,n);
+    print(arr1,m);
+    print(arr2,n);
 }
-
 
 class Solution {
 public:
