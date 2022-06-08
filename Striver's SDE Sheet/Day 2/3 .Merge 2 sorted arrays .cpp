@@ -1,3 +1,50 @@
+// tc : o(n*m) 
+// sc : o(1)
+#include<bits/stdc++.h>
+using namespace std;
+
+void merge1(vector<int>&arr1,vector<int>&arr2,int m,int n)
+{
+    int k;
+    for(int i=0;i<m;i++)
+    {
+        if(arr1[i]>arr2[0])
+        {
+            swap(arr1[i],arr2[0]);
+        }
+        
+        // using insertion sort algo
+        int first = arr2[0];
+        for(k=1;k<n and arr2[k]<first;k++)
+        {
+            arr2[k-1] = arr2[k];
+        }
+        arr2[k-1] = first;
+    }
+}
+
+void print(vector<int>&arr,int a)
+{
+    for(int i=0;i<a;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    vector<int>arr1{1,2,3,8,10};
+    vector<int>arr2{4,7,9};
+    
+    int m = arr1.size();
+    int n = arr2.size();
+    merge1(arr1,arr2,m,n);
+    print(arr1,m);
+    print(arr2,n);
+}
+
+
 class Solution {
 public:
         // Brute Force  
