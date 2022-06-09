@@ -179,3 +179,106 @@ public:
         return a;
         // code here
     }
+
+
+// using bit manipulation 
+// tc : o(5*n)
+// sc : o(n)+o(n)
+#include<bits/stdc++.h>
+using namespace std;
+
+void find(vector<int>&arr,int n)
+{
+    int xor1 = 1;
+    int set_bit = 0;
+    vector<int>v1;
+    vector<int>v2;
+    
+    for(auto p :arr)
+    {
+        xor1 ^= p;
+    }
+    
+    for(int i=1;i<=n;i++)
+    {
+        xor1 ^= i;
+    }
+    
+    set_bit = xor1 & ~(xor1-1);
+    
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i] & set_bit)
+        {
+            v1.push_back(arr[i]);
+        }
+        else
+        {
+            v2.push_back(arr[i]);
+        }
+    }
+    
+    for(int i=1;i<=n;i++)
+    {
+        if(i & set_bit)
+        {
+            v1.push_back(i);
+        }
+        else
+        {
+            v2.push_back(i);
+        }
+    }
+    
+    int m1=1;
+    for(auto x : v1)
+    {
+        m1 = m1^x;
+        cout<<x<<" ";
+    }
+    cout<<endl;
+    
+    int m2 =1;
+    for(auto x : v2)
+    {
+        m2 = m2^x;
+        cout<<x<<" ";
+    }
+    cout<<endl;
+    
+    cout<<m1<<" "<<m2<<endl;
+    
+    int xcount = 0;
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]==m1)
+        {
+            xcount++;
+        }
+    }
+    
+    if(xcount==0)
+    {
+        cout<<m1<<" "<<m2<<endl;
+    }
+    
+    else
+    {
+        cout<<m2<<" "<<m1<<endl;
+    }
+    
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int>arr(n,0);
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    
+    find(arr,n);
+    return 0;
+}
